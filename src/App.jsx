@@ -69,15 +69,7 @@ Reglas: nombre realista según nacionalidad y época. Textos narrativos de 2-4 f
       const parsed = JSON.parse(match[0])
       setPnj(parsed)
 
-      const gender = parsed.sexo === 'mujer' ? 'woman' : 'man'
-      const archEn = p.archetype.replace(/\d+[\.\d]*\s*·\s*/g, '').toLowerCase()
-      const loc = p.residencia || 'urban city'
-      const yr = p.anio || 'contemporary'
-      const ip = encodeURIComponent(
-        `cinematic portrait photo ${gender} ${parsed.edad} years old ${archEn} ${yr} ${loc} noir dramatic lighting gritty realism dark atmosphere photorealistic detailed face`
-      )
-      setImgSrc(`https://image.pollinations.ai/prompt/${ip}?width=300&height=400&nologo=true&seed=${Date.now()}`)
-
+    
     } catch (e) {
       setError(e.message)
     }
