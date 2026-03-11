@@ -1,0 +1,63 @@
+.app {
+  min-height: 100vh;
+  background: var(--darker);
+}
+
+.header {
+  text-align: center;
+  padding: 2.5rem 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.sigil {
+  color: var(--blood);
+  letter-spacing: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+.title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900;
+  color: var(--pale-gold);
+  letter-spacing: 0.4rem;
+  text-shadow: 0 0 50px rgba(180,140,40,0.25), 0 2px 6px rgba(0,0,0,0.9);
+}
+
+.subtitle {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: var(--dim);
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
