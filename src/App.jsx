@@ -51,14 +51,10 @@ Responde SOLO con un objeto JSON válido, sin markdown ni texto adicional:
 Reglas: nombre realista según nacionalidad y época. Textos narrativos de 2-4 frases cada uno. Secreto inconfesable: oscuro, específico, con peso dramático real y consecuencias concretas si se descubre. Adapta todo al año, localización y contexto cultural indicados.`
 
     try {
-      const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      const res = await fetch('/api/generate', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
@@ -73,7 +69,6 @@ Reglas: nombre realista según nacionalidad y época. Textos narrativos de 2-4 f
       const parsed = JSON.parse(match[0])
       setPnj(parsed)
 
-      // Build Pollinations image prompt
       const gender = parsed.sexo === 'mujer' ? 'woman' : 'man'
       const archEn = p.archetype.replace(/\d+[\.\d]*\s*·\s*/g, '').toLowerCase()
       const loc = p.residencia || 'urban city'
