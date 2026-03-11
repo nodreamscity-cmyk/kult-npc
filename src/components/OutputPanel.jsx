@@ -55,19 +55,7 @@ export default function OutputPanel({ pnj, imgSrc, loading, error, params }) {
           <div className={styles.namebar}>
             <div className={styles.portraitWrap}>
               {imgSrc && !imgReady && (
-                <div className={styles.portraitPh}>Generando retrato…</div>
-              )}
-              {imgSrc && (
-                <img
-                  src={imgSrc}
-                  alt={pnj.nombre}
-                  className={styles.portrait}
-                  style={{ display: imgReady ? 'block' : 'none' }}
-                  onLoad={() => setImgReady(true)}
-                  onError={() => setPrevImg(null)}
-                />
-              )}
-            </div>
+           
 
             <div className={styles.nameInfo}>
               {params && <div className={styles.archetype}>{params.archetype}</div>}
