@@ -1,0 +1,170 @@
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  position: sticky;
+  top: 1.5rem;
+}
+
+.panelHead {
+  padding: 0.85rem 1.3rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.panelHead h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22rem;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background: var(--blood);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.body {
+  padding: 1.3rem;
+}
+
+.field {
+  margin-bottom: 1.05rem;
+}
+
+.field label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.14rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 0.32rem;
+}
+
+.field input,
+.selWrap select {
+  width: 100%;
+  background: var(--mid);
+  border: 1px solid var(--border);
+  color: var(--ash);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.52rem 0.75rem;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field input:focus,
+.selWrap select:focus {
+  border-color: var(--gold);
+}
+
+.field input::placeholder {
+  color: var(--border-light);
+  font-style: italic;
+}
+
+.selWrap {
+  position: relative;
+}
+
+.selWrap::after {
+  content: '▾';
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  pointer-events: none;
+  font-size: 0.72rem;
+}
+
+/* Toggle */
+.toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+}
+
+.toggleBtn {
+  padding: 0.5rem;
+  background: var(--mid);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.toggleBtn:hover { border-color: var(--border-light); color: var(--ash); }
+.toggleBtn.active { background: var(--deep-red); border-color: var(--blood); color: var(--pale); }
+
+/* Radio group */
+.radioGroup {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.3rem;
+}
+
+.radioBtn {
+  padding: 0.42rem 0.1rem;
+  background: var(--mid);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem;
+  text-align: center;
+  line-height: 1.2;
+  transition: all 0.2s;
+}
+
+.radioBtn:hover { border-color: var(--border-light); color: var(--ash); }
+.radioBtn.active { background: var(--deep-red); border-color: var(--blood); color: var(--pale); }
+
+/* Generate button */
+.genBtn {
+  width: 100%;
+  padding: 0.9rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--pale-gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.28rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.genBtn:hover {
+  background: rgba(180,140,40,0.07);
+  box-shadow: 0 0 24px rgba(180,140,40,0.12);
+}
+
+.genBtn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.amenazaNota {
+  font-size: 0.65rem;
+  color: var(--blood);
+  font-style: italic;
+  margin-top: 0.4rem;
+  letter-spacing: 0.02rem;
+  opacity: 0.8;
+}
