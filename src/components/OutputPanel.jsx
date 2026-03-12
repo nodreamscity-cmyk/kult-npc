@@ -126,6 +126,53 @@ export default function OutputPanel({ pnj, loading, error, params }) {
             </div>
           )}
 
+          {/* Ventajas, Desventajas y Equilibrio Mental */}
+          {(pnj.ventajas?.length > 0 || pnj.desventajas?.length > 0) && (
+            <div className={styles.equilibrioBlock}>
+              <div className={styles.vdGrid}>
+                {pnj.ventajas?.length > 0 && (
+                  <div className={styles.vdCol}>
+                    <div className={styles.vdTitle}>Ventajas</div>
+                    {pnj.ventajas.map((v, i) => (
+                      <div key={i} className={styles.vdItem}>
+                        <span className={styles.vdLabel}>{v.label}</span>
+                        <span className={styles.vdPts}>{v.coste} pts</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {pnj.desventajas?.length > 0 && (
+                  <div className={styles.vdCol}>
+                    <div className={styles.vdTitle}>Desventajas</div>
+                    {pnj.desventajas.map((d, i) => (
+                      <div key={i} className={styles.vdItem}>
+                        <span className={styles.vdLabel}>{d.label}</span>
+                        <span className={styles.vdPts}>{d.puntos} pts</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              {pnj.equilibrio_calculado && (
+                <div className={`${styles.equilibrioBar} ${pnj.equilibrio_calculado.signo === 'negativo' ? styles.equilibrioNeg : styles.equilibrioPos}`}>
+                  <span>
+                    Equilibrio mental:
+                    <strong> {pnj.equilibrio_calculado.signo === 'negativo' ? '−' : '+'}{pnj.equilibrio_calculado.equilibrioMental}</strong>
+                    {' '}({pnj.equilibrio_calculado.signo})
+                  </span>
+                  {pnj.equilibrio_calculado.puntosHabilidadExtra > 0 && (
+                    <span className={styles.ptsExtra}>+{pnj.equilibrio_calculado.puntosHabilidadExtra} pts habilidad</span>
+                  )}
+                </div>
+              )}
+              {pnj.equilibrio_calculado?.efectoActivo && (
+                <div className={styles.equilibrioEfecto}>
+                  {pnj.equilibrio_calculado.efectoActivo.efecto}
+                </div>
+              )}
+            </div>
+          )}
+
           <div className={styles.sections}>
 
             <Section title="Situación vital">
