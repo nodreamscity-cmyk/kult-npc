@@ -3,6 +3,7 @@ import InputPanel from './components/InputPanel.jsx'
 import OutputPanel from './components/OutputPanel.jsx'
 import { aplicarEnvejecimiento, promptAptitudes, CON_SECRETO, calcularSecundarias } from './aptitudes.js'
 import { calcularEquilibrio, promptEquilibrio } from './equilibrio.js'
+import { promptHabilidades } from './habilidades.js'
 import styles from './App.module.css'
 
 export default function App() {
@@ -30,10 +31,16 @@ Genera un PNJ con estos parámetros:
 - Sexo: ${p.sexo === 'aleatorio' ? 'elige libremente según el arquetipo' : p.sexo}
 - Orientación sexual: ${p.orientacion === 'aleatoria' ? 'elige libremente según el arquetipo' : p.orientacion}
 - Nivel de amenaza y experiencia: ${p.amenaza}
+${p.edad ? `- Edad fijada por el usuario: ${p.edad} años. Respeta esta edad salvo que contradiga una restricción de nivel (alto/muy alto: máximo 45 años).` : ''}
+${p.inspiracion ? `- Inspiración de personaje: "${p.inspiracion}". IMPORTANTE: solo usa esta referencia si corresponde a una figura pública, histórica o de ficción reconocida internacionalmente. Si no la reconoces, ignórala completamente y genera el personaje según arquetipo y nivel. Si la reconoces, úsala como ancla de personalidad, perfil y distribución de aptitudes — no copies datos biográficos reales, inspírate en el arquetipo que representa.` : ''}
 
 ${promptAptitudes(p.amenaza, p.perfilCalculado)}
 
 ${promptEquilibrio(p.amenaza, p.ponderacion)}
+
+${promptHabilidades(p.amenaza, p.perfilCalculado, null, 0)}
+
+Nota: el pool de habilidades puede aumentar según el balance ventajas/desventajas que determines. Ajusta pool_gastado en consecuencia.
 
 Responde SOLO con un objeto JSON válido, sin markdown ni texto adicional:
 {
@@ -60,7 +67,11 @@ Responde SOLO con un objeto JSON válido, sin markdown ni texto adicional:
   "desventajas": [{"id": "", "label": "", "puntos": 0}],
   "equilibrio_mental": 0,
   "puntos_habilidad_extra": 0,
-  "equilibrio_signo": "positivo/negativo/neutro"
+  "equilibrio_signo": "positivo/negativo/neutro",
+  "habilidades": [{"id": "", "label": "", "aptitud": "", "valor": 0, "bloque": "principal/ancla/basica", "nota": ""}],
+  "arte_marcial": null,
+  "pool_total": 0,
+  "pool_gastado": 0
 }
 
 Reglas narrativas: nombre realista según nacionalidad y época. Textos de 2-4 frases cada uno. Adapta todo al año, localización y contexto cultural. El nivel de amenaza fuerza el relato y el relato fuerza la distribución de aptitudes.`
