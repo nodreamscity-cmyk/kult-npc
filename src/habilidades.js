@@ -226,12 +226,13 @@ export const NUM_HABILIDADES = {
 }
 
 // ── Genera el bloque de instrucciones para el prompt ──
-export function promptHabilidades(amenaza, perfilCalculado, aptitudes, puntosHabilidadExtra = 0) {
+export function promptHabilidades(amenaza, perfilCalculado, ponderacion, puntosHabilidadExtra = 0) {
   const pool = POOL_BASE[amenaza] + puntosHabilidadExtra
   const niv = NUM_HABILIDADES[amenaza]
   const nivelesAM = NIVELES_AM_POR_AMENAZA[amenaza]
-  const esCombativo = perfilCalculado?.tipo === 'combativo' ||
-    (perfilCalculado?.pesos && (perfilCalculado.pesos.combativo || 0) > 40)
+
+  // Mostrar artes marciales para cualquier nivel medio+ — la IA decide si el arquetipo es compatible
+  const esCombativo = nivelesAM.length > 0
 
   const listaBasicas = HABILIDADES_BASICAS
     .map(h => `  · ${h.label} [${h.aptitud}] (base 3 gratis)`)
@@ -280,23 +281,20 @@ Nota: Deporte y Pilotar son una habilidad por especialidad (ej: Deporte — Fút
 HABILIDADES ACADÉMICAS (basadas en EDU, especialización cuesta igual que la primaria, requiere mínimo 5):
 ${listaAcademicas}
 
-${esCombativo && nivelesAM.length > 0 ? `ARTES MARCIALES (solo perfil combativo):
+${esCombativo ? `ARTES MARCIALES:
 Niveles accesibles para nivel "${amenaza}": ${nivelesAM.map(n => {
     const names = { 20: 'Estudiante', 30: 'Instructor', 50: 'Maestro', 75: 'Gran maestro' }
     return `${names[n]} (${n} pts)`
   }).join(', ')}
+Incluye arte marcial si el perfil y arquetipo del personaje lo justifican (militar, mercenario, policía, seguridad, criminal, etc.). Si el arquetipo es claramente incompatible, deja arte_marcial en null.
 Restricción maestro/gran maestro: FUE ≥ 20 y AGI ≥ 20
 Sentido del cuerpo reduce el coste a la mitad (redondeando arriba)
 Bono al daño: Estudiante +1 / Instructor +3 / Maestro +5 / Gran maestro +10
-Habilidades FUE dentro del arte marcial: sujetas a norma ×3 como cualquier habilidad FUE
-Habilidades AGI dentro del arte marcial: también sujetas a norma ×3
 
-Disciplinas disponibles (o crea una nueva siguiendo esta estructura):
+Disciplinas disponibles (o inventa una coherente con el arquetipo):
 ${listaAM}
 
-Maniobras budo: solo accesibles si el personaje tiene arte marcial. Aptitud dominante según tabla.
-
-${(amenaza === 'maestro' || amenaza === 'único') ? `HABILIDADES PRETERNATURALES (solo maestros y grandes maestros, coste fijo, pasivas):
+${(amenaza === 'muy alto' || amenaza === 'único') ? `HABILIDADES PRETERNATURALES (solo maestros y grandes maestros):
 ${preternaturales}` : ''}` : ''}
 
 Incluye en el JSON:
