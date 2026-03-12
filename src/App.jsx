@@ -125,6 +125,26 @@ Reglas narrativas: nombre realista según nacionalidad y época. Textos de 1-2 f
         parsed.equilibrio_calculado = eq
       }
 
+      // Normalizar maniobras budo — la IA a veces devuelve strings en lugar de objetos
+      if (parsed.arte_marcial?.maniobras) {
+        const APTITUD_MANIOBRA = {
+          'amortiguar el golpe': 'AGI', 'ataque relámpago': 'AGI', 'ataque torbellino': 'AGI',
+          'combinar': 'AGI', 'desarmar': 'AGI', 'estrangulamiento': 'AGI', 'evasión': 'AGI',
+          'gancho': 'FUE', 'iaido': 'AGI', 'kiai': 'EGO', 'noquear': 'FUE',
+          'patada giratoria': 'FUE', 'patada voladora': 'FUE', 'romper el arma': 'AGI',
+          'tajo giratorio': 'AGI', 'salto del tigre': 'AGI', 'zafarse': 'AGI',
+          'zarpa de tigre': 'AGI', 'fuera de combate': 'AGI', 'suavizar el golpe': 'AGI',
+          'romper la presa': 'AGI', 'contraataque': 'AGI', 'inmovilización': 'AGI',
+        }
+        parsed.arte_marcial.maniobras = parsed.arte_marcial.maniobras.map(m => {
+          if (typeof m === 'string') {
+            const key = m.toLowerCase()
+            return { label: m, aptitud: APTITUD_MANIOBRA[key] || 'AGI', valor: '' }
+          }
+          return m
+        })
+      }
+
       setPnj(parsed)
     } catch (e) {
       setError(e.message)
