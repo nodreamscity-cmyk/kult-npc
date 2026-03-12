@@ -304,7 +304,7 @@ Las habilidades del arte marcial tienen valores FIJOS según el nivel — cópia
 
 ${listaAMConValores}
 
-Para las maniobras budo, elige entre 2-4 de las compatibles con la disciplina.
+Para las maniobras budo, elige entre 2-4 de las compatibles con la disciplina e invierte puntos del pool en ellas. Cada maniobra tiene su aptitud dominante según la tabla. Solo incluye las que tienen puntos invertidos — con su valor numérico. Las que no tienen puntos no aparecen.
 ${(amenaza === 'muy alto' || amenaza === 'único') ? `\nHABILIDADES PRETERNATURALES (solo maestros y grandes maestros, elige 0-2 coherentes con el arquetipo):
 ${preternaturales}` : ''}` : ''}
 
