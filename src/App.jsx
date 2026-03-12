@@ -79,16 +79,21 @@ Responde SOLO con un objeto JSON válido, sin markdown ni texto adicional:
   "puntos_habilidad_extra": 0,
   "equilibrio_signo": "positivo/negativo/neutro",
   "habilidades": [{"id": "", "label": "", "aptitud": "", "valor": 0, "bloque": "principal/ancla/basica", "nota": ""}],
-  "arte_marcial": null,
+  "arte_marcial": {
+    "disciplina": "nombre del arte marcial",
+    "nivel": 0,
+    "nivel_label": "estudiante/instructor/maestro/gran maestro",
+    "coste": 0,
+    "bono_dano": 0,
+    "habilidades": [{"id": "", "label": "", "aptitud": "FUE/AGI", "valor": 0}],
+    "maniobras": ["nombre maniobra 1", "nombre maniobra 2"],
+    "preternaturales": [{"label": "", "coste": 0}]
+  },
   "pool_total": 0,
   "pool_gastado": 0
 }
 
-Reglas narrativas: nombre realista según nacionalidad y época. Textos de 2-4 frases cada uno. Adapta todo al año, localización y contexto cultural. El nivel de amenaza fuerza el relato y el relato fuerza la distribución de aptitudes.`
-
-    console.log('=== BLOQUE AM ===')
-    console.log(promptHabilidades(p.amenaza, p.perfilCalculado, p.ponderacion, 0).split('ARTES MARCIALES')[1]?.substring(0, 200) || 'NO APARECE BLOQUE AM')
-    console.log('===')
+Reglas narrativas: nombre realista según nacionalidad y época. Textos de 1-2 frases precisas. Adapta todo al año, localización y contexto cultural. El nivel de amenaza fuerza el relato y el relato fuerza la distribución de aptitudes.`
 
     try {
       const res = await fetch('/api/generate', {
