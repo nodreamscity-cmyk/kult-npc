@@ -23,6 +23,9 @@ export default function InputPanel({ onGenerar, loading }) {
   const [amenaza, setAmenaza] = useState('bajo')
   const [sexo, setSexo] = useState('aleatorio')
   const [orientacion, setOrientacion] = useState('aleatoria')
+  const [edad, setEdad] = useState('')
+  const [modoInspiracion, setModoInspiracion] = useState(false)
+  const [inspiracion, setInspiracion] = useState('')
 
   // Ponderación de perfiles — suma debe ser 100
   const [ponderacion, setPonderacion] = useState({
@@ -87,6 +90,8 @@ export default function InputPanel({ onGenerar, loading }) {
       archetype: getArchetype(),
       anio, nacionalidad, residencia, minoria, amenaza,
       sexo, orientacion,
+      edad: edad ? parseInt(edad) : null,
+      inspiracion: modoInspiracion ? inspiracion.trim() : null,
       ponderacion, perfilCalculado
     })
   }
@@ -186,31 +191,69 @@ export default function InputPanel({ onGenerar, loading }) {
           </div>
         </Field>
 
-        {/* PERFIL PONDERADO */}
+        <Field label="Edad (opcional)">
+          <input
+            type="number"
+            value={edad}
+            onChange={e => setEdad(e.target.value)}
+            placeholder="Dejar vacío para edad automática"
+            min={15} max={90}
+          />
+          {edad && (parseInt(edad) > 45) && (amenaza === 'alto' || amenaza === 'muy alto') && (
+            <div className={styles.edadAviso}>⚠ Nivel {amenaza} limita la edad a 45 años</div>
+          )}
+        </Field>
+
+        {/* PERFIL / INSPIRACIÓN */}
         <Field label="Perfil del personaje">
-          <div className={styles.perfilWrap}>
-            {PERFIL_KEYS.map(k => (
-              <div key={k} className={styles.perfilRow}>
-                <div className={styles.perfilLabel}>
-                  <span>{PERFILES[k].label}</span>
-                  <span className={styles.perfilPct}>{ponderacion[k]}%</span>
-                </div>
-                <div className={styles.sliderWrap}>
-                  <input
-                    type="range"
-                    min={0} max={100} step={5}
-                    value={ponderacion[k]}
-                    onChange={e => handleSlider(k, Number(e.target.value))}
-                    style={{ '--c': PERFIL_COLORS[k] }}
-                    className={styles.slider}
-                  />
-                </div>
-              </div>
-            ))}
-            <div className={styles.perfilEdad}>
-              ⬡ Edad estimada: {perfilCalculado.edadMin}–{perfilCalculado.edadMax} años
-            </div>
+          <div className={styles.modoToggle}>
+            <button
+              className={`${styles.modoBtn} ${!modoInspiracion ? styles.active : ''}`}
+              onClick={() => setModoInspiracion(false)}
+            >Perfil ponderado</button>
+            <button
+              className={`${styles.modoBtn} ${modoInspiracion ? styles.active : ''}`}
+              onClick={() => setModoInspiracion(true)}
+            >Inspiración</button>
           </div>
+
+          {modoInspiracion ? (
+            <div className={styles.inspiracionWrap}>
+              <input
+                type="text"
+                value={inspiracion}
+                onChange={e => setInspiracion(e.target.value)}
+                placeholder="ej. Al Capone, Bruce Lee, Sherlock Holmes…"
+              />
+              <div className={styles.inspiracionNota}>
+                Personaje histórico, celebridad o personaje de ficción conocido internacionalmente
+              </div>
+            </div>
+          ) : (
+            <div className={styles.perfilWrap}>
+              {PERFIL_KEYS.map(k => (
+                <div key={k} className={styles.perfilRow}>
+                  <div className={styles.perfilLabel}>
+                    <span>{PERFILES[k].label}</span>
+                    <span className={styles.perfilPct}>{ponderacion[k]}%</span>
+                  </div>
+                  <div className={styles.sliderWrap}>
+                    <input
+                      type="range"
+                      min={0} max={100} step={5}
+                      value={ponderacion[k]}
+                      onChange={e => handleSlider(k, Number(e.target.value))}
+                      style={{ '--c': PERFIL_COLORS[k] }}
+                      className={styles.slider}
+                    />
+                  </div>
+                </div>
+              ))}
+              <div className={styles.perfilEdad}>
+                ⬡ Edad estimada: {perfilCalculado.edadMin}–{perfilCalculado.edadMax} años
+              </div>
+            </div>
+          )}
         </Field>
 
         <button className={styles.genBtn} onClick={handleSubmit} disabled={loading}>

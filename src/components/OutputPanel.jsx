@@ -215,9 +215,99 @@ export default function OutputPanel({ pnj, loading, error, params }) {
               </Section>
             )}
 
+            {/* Habilidades */}
+            {pnj.habilidades?.length > 0 && (
+              <Section title="Habilidades" full>
+                <div className={styles.habPool}>
+                  Pool: <strong>{pnj.pool_gastado || '?'}</strong> / {pnj.pool_total || '?'} pts
+                </div>
+
+                {/* Bloque principal */}
+                {pnj.habilidades.filter(h => h.bloque === 'principal').length > 0 && (
+                  <div className={styles.habBloque}>
+                    <div className={styles.habBloqueTitle}>Especialización</div>
+                    <div className={styles.habGrid}>
+                      {pnj.habilidades.filter(h => h.bloque === 'principal').map((h, i) => (
+                        <HabItem key={i} h={h} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Bloque ancla */}
+                {pnj.habilidades.filter(h => h.bloque === 'ancla').length > 0 && (
+                  <div className={styles.habBloque}>
+                    <div className={styles.habBloqueTitle}>Rasgos personales</div>
+                    <div className={styles.habGrid}>
+                      {pnj.habilidades.filter(h => h.bloque === 'ancla').map((h, i) => (
+                        <HabItem key={i} h={h} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Básicas con inversión */}
+                {pnj.habilidades.filter(h => h.bloque === 'basica').length > 0 && (
+                  <div className={styles.habBloque}>
+                    <div className={styles.habBloqueTitle}>Básicas</div>
+                    <div className={styles.habGrid}>
+                      {pnj.habilidades.filter(h => h.bloque === 'basica').map((h, i) => (
+                        <HabItem key={i} h={h} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </Section>
+            )}
+
+            {/* Arte marcial */}
+            {pnj.arte_marcial?.disciplina && (
+              <Section title={`Arte marcial — ${pnj.arte_marcial.disciplina}`} full>
+                <div className={styles.amHeader}>
+                  <span className={styles.amNivel}>{pnj.arte_marcial.nivel_label}</span>
+                  <span className={styles.amBono}>Bono al daño: +{pnj.arte_marcial.bono_dano}</span>
+                  <span className={styles.amCoste}>{pnj.arte_marcial.coste} pts</span>
+                </div>
+                {pnj.arte_marcial.habilidades?.length > 0 && (
+                  <div className={styles.habGrid} style={{ marginTop: '0.6rem' }}>
+                    {pnj.arte_marcial.habilidades.map((h, i) => (
+                      <HabItem key={i} h={h} />
+                    ))}
+                  </div>
+                )}
+                {pnj.arte_marcial.maniobras?.length > 0 && (
+                  <div className={styles.amManiobras}>
+                    <span className={styles.habBloqueTitle}>Maniobras budo: </span>
+                    {pnj.arte_marcial.maniobras.join(', ')}
+                  </div>
+                )}
+                {pnj.arte_marcial.preternaturales?.length > 0 && (
+                  <div className={styles.habBloque}>
+                    <div className={styles.habBloqueTitle}>Habilidades preternaturales</div>
+                    {pnj.arte_marcial.preternaturales.map((h, i) => (
+                      <div key={i} className={styles.preternItem}>
+                        <span>{h.label}</span>
+                        <span className={styles.vdPts}>{h.coste} pts</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </Section>
+            )}
+
           </div>
         </div>
       )}
+    </div>
+  )
+}
+
+function HabItem({ h }) {
+  return (
+    <div className={styles.habItem}>
+      <span className={styles.habLabel}>{h.label}{h.nota ? ` — ${h.nota}` : ''}</span>
+      <span className={styles.habApt}>{h.aptitud}</span>
+      <span className={styles.habVal}>{h.valor}</span>
     </div>
   )
 }

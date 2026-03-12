@@ -272,3 +272,52 @@
   letter-spacing: 0.03rem;
   opacity: 0.85;
 }
+
+/* ── Edad ── */
+.edadAviso {
+  font-size: 0.72rem;
+  color: var(--blood);
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* ── Toggle modo perfil/inspiración ── */
+.modoToggle {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.modoBtn {
+  flex: 1;
+  padding: 0.4rem 0.5rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modoBtn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(184, 148, 42, 0.08);
+}
+
+/* ── Inspiración ── */
+.inspiracionWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.inspiracionNota {
+  font-size: 0.7rem;
+  color: var(--dim);
+  font-style: italic;
+  line-height: 1.4;
+}
