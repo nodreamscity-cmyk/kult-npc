@@ -86,7 +86,7 @@ Responde SOLO con un objeto JSON válido, sin markdown ni texto adicional:
     "coste": 0,
     "bono_dano": 0,
     "habilidades": [{"id": "", "label": "", "aptitud": "FUE/AGI", "valor": 0}],
-    "maniobras": ["nombre maniobra 1", "nombre maniobra 2"],
+    "maniobras": [{"label": "", "aptitud": "AGI/FUE/EGO", "valor": 0}],
     "preternaturales": [{"label": "", "coste": 0}]
   },
   "pool_total": 0,
