@@ -22,6 +22,17 @@ export default function App() {
 
     const prompt = `Eres asistente para el juego de rol de horror KULT (primera edición). Tono oscuro, urbano y perturbador. La realidad es una ilusión y el horror acecha bajo la superficie cotidiana.
 
+FILOSOFÍA NARRATIVA — MUY IMPORTANTE:
+Esta app genera el ESQUEMA de un personaje, no su historia. El narrador pondrá la vida.
+- Cada campo narrativo: 1-2 frases precisas. Trazos, no relatos.
+- Sin ganchos para el master, sin dramatismo innecesario, sin frases de cierre épicas.
+- Apariencia: rasgos físicos concretos y llamativos. Nada más.
+- Personalidad: 2-3 rasgos dominantes en tensión. Sin explicaciones psicológicas.
+- Motivación: una dirección, no una historia de vida.
+- Comportamiento ante jugadores: cómo reacciona en primera instancia. Punto.
+- Secreto inconfesable: la tensión latente, no el relato del trauma.
+- Familiares / vínculos: nombres, rol, estado. Sin narrativa.
+
 Genera un PNJ con estos parámetros:
 - Tipo: ${p.grupoLabel} / ${p.archetype}
 - Año de campaña: ${p.anio || 'contemporáneo'}
