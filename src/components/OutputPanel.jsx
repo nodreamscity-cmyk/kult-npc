@@ -272,9 +272,13 @@ export default function OutputPanel({ pnj, loading, error, params }) {
                   </div>
                 )}
                 {pnj.arte_marcial.maniobras?.length > 0 && (
-                  <div className={styles.amManiobras}>
-                    <span className={styles.habBloqueTitle}>Maniobras budo: </span>
-                    {pnj.arte_marcial.maniobras.join(', ')}
+                  <div className={styles.habBloque}>
+                    <div className={styles.habBloqueTitle}>Maniobras budo</div>
+                    <div className={styles.habGrid}>
+                      {pnj.arte_marcial.maniobras.map((m, i) => (
+                        <HabItem key={i} h={typeof m === 'string' ? { label: m, aptitud: '', valor: '' } : m} />
+                      ))}
+                    </div>
                   </div>
                 )}
                 {pnj.arte_marcial.preternaturales?.length > 0 && (
