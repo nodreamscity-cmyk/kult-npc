@@ -198,10 +198,6 @@ export default function OutputPanel({ pnj, loading, error, params }) {
               <p className={styles.text}>{pnj.personalidad}</p>
             </Section>
 
-            <Section title="Motivación" even>
-              <p className={styles.text}>{pnj.motivacion}</p>
-            </Section>
-
             <Section title="Ante los jugadores" full>
               <p className={styles.text}>{pnj.comportamiento_jugadores}</p>
             </Section>
