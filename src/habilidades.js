@@ -246,11 +246,22 @@ export function promptHabilidades(amenaza, perfilCalculado, ponderacion, puntosH
     .map(h => `  · ${h.label} [EDU] — especialidades: ${h.especialidades.join(', ')}`)
     .join('\n')
 
-  const listaAM = ARTES_MARCIALES
+  // Lista AM con valores del nivel máximo accesible, en orden aleatorio para evitar sesgo
+  const nivelesAMOrdenados = [...nivelesAM].sort((a, b) => a - b)
+  const nivelMaxAM = nivelesAMOrdenados[nivelesAMOrdenados.length - 1]
+  const nombresNivel = { 20: 'Estudiante', 30: 'Instructor', 50: 'Maestro', 75: 'Gran maestro' }
+
+  const listaAMConValores = [...ARTES_MARCIALES]
+    .sort(() => Math.random() - 0.5) // orden aleatorio para evitar sesgo hacia la última
     .map(am => {
-      const habs = am.habilidades.map(h => `    - ${h.label} [${h.aptitud}]`).join('\n')
-      return `  · ${am.label}: ${am.descripcion}\n${habs}`
-    }).join('\n')
+      const habs = am.habilidades.map(h => {
+        const valoresDisponibles = nivelesAMOrdenados
+          .map(n => `${nombresNivel[n]}: ${h.niveles[n] ?? '—'}`)
+          .join(' / ')
+        return `    - ${h.label} [${h.aptitud}]: ${valoresDisponibles}`
+      }).join('\n')
+      return `  · ${am.label} — ${am.descripcion}\n${habs}`
+    }).join('\n\n')
 
   const preternaturales = HABILIDADES_PRETERNATURALES
     .map(h => `  · ${h.label} (${h.coste} pts) — ${h.descripcion}`)
@@ -282,19 +293,19 @@ HABILIDADES ACADÉMICAS (basadas en EDU, especialización cuesta igual que la pr
 ${listaAcademicas}
 
 ${esCombativo ? `ARTES MARCIALES:
-Niveles accesibles para nivel "${amenaza}": ${nivelesAM.map(n => {
-    const names = { 20: 'Estudiante', 30: 'Instructor', 50: 'Maestro', 75: 'Gran maestro' }
-    return `${names[n]} (${n} pts)`
-  }).join(', ')}
-Incluye arte marcial si el perfil y arquetipo del personaje lo justifican (militar, mercenario, policía, seguridad, criminal, etc.). Si el arquetipo es claramente incompatible, deja arte_marcial en null.
+Niveles accesibles para nivel "${amenaza}": ${nivelesAMOrdenados.map(n => `${nombresNivel[n]} (${n} pts)`).join(', ')}
+Incluye arte marcial si el perfil y arquetipo lo justifican. Si el arquetipo es claramente incompatible, deja arte_marcial en null.
 Restricción maestro/gran maestro: FUE ≥ 20 y AGI ≥ 20
 Sentido del cuerpo reduce el coste a la mitad (redondeando arriba)
 Bono al daño: Estudiante +1 / Instructor +3 / Maestro +5 / Gran maestro +10
 
-Disciplinas disponibles (o inventa una coherente con el arquetipo):
-${listaAM}
+Elige la disciplina más coherente con el arquetipo, nacionalidad y trasfondo. Puedes inventar una nueva siguiendo la misma estructura.
+Las habilidades del arte marcial tienen valores FIJOS según el nivel — cópialos exactamente en el JSON:
 
-${(amenaza === 'muy alto' || amenaza === 'único') ? `HABILIDADES PRETERNATURALES (solo maestros y grandes maestros):
+${listaAMConValores}
+
+Para las maniobras budo, elige entre 2-4 de las compatibles con la disciplina.
+${(amenaza === 'muy alto' || amenaza === 'único') ? `\nHABILIDADES PRETERNATURALES (solo maestros y grandes maestros, elige 0-2 coherentes con el arquetipo):
 ${preternaturales}` : ''}` : ''}
 
 Incluye en el JSON:
