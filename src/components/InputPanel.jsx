@@ -140,7 +140,20 @@ export default function InputPanel({ onGenerar, loading }) {
         </Field>
 
         <Field label="Nacionalidad del PNJ">
-          <input type="text" value={nacionalidad} onChange={e => setNacionalidad(e.target.value)} placeholder="ej. inglesa, rusa, japonesa…" />
+          <div className={styles.nacionalidadWrap}>
+            <input
+              type="text"
+              value={nacionalidad}
+              onChange={e => setNacionalidad(e.target.value)}
+              placeholder="ej. inglesa, rusa, japonesa…"
+              disabled={nacionalidad === '__aleatoria__'}
+            />
+            <button
+              className={`${styles.randomBtn} ${nacionalidad === '__aleatoria__' ? styles.active : ''}`}
+              onClick={() => setNacionalidad(nacionalidad === '__aleatoria__' ? '' : '__aleatoria__')}
+              title="Nacionalidad aleatoria"
+            >⬡ Aleatoria</button>
+          </div>
         </Field>
 
         <Field label="Residencia / Localización de la aventura">

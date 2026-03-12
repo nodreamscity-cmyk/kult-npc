@@ -321,3 +321,33 @@
   font-style: italic;
   line-height: 1.4;
 }
+
+/* ── Nacionalidad aleatoria ── */
+.nacionalidadWrap {
+  display: flex;
+  gap: 0.4rem;
+  align-items: stretch;
+}
+
+.nacionalidadWrap input {
+  flex: 1;
+}
+
+.randomBtn {
+  padding: 0 0.7rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.06rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.randomBtn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(184, 148, 42, 0.08);
+}
