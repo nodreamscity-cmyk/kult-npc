@@ -69,7 +69,6 @@ Responde SOLO con un objeto JSON válido, sin markdown ni texto adicional:
   "amigos_vinculos": "",
   "apariencia": "",
   "personalidad": "",
-  "motivacion": "",
   "comportamiento_jugadores": "",
   "secreto_inconfesable": ${conSecreto ? '""' : 'null'},
   "secreto_arquetipo": ${conSecreto ? '""' : 'null'},
@@ -86,6 +85,10 @@ Responde SOLO con un objeto JSON válido, sin markdown ni texto adicional:
 }
 
 Reglas narrativas: nombre realista según nacionalidad y época. Textos de 2-4 frases cada uno. Adapta todo al año, localización y contexto cultural. El nivel de amenaza fuerza el relato y el relato fuerza la distribución de aptitudes.`
+
+    console.log('=== BLOQUE AM ===')
+    console.log(promptHabilidades(p.amenaza, p.perfilCalculado, p.ponderacion, 0).split('ARTES MARCIALES')[1]?.substring(0, 200) || 'NO APARECE BLOQUE AM')
+    console.log('===')
 
     try {
       const res = await fetch('/api/generate', {
