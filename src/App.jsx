@@ -36,7 +36,7 @@ Esta app genera el ESQUEMA de un personaje, no su historia. El narrador pondrá 
 Genera un PNJ con estos parámetros:
 - Tipo: ${p.grupoLabel} / ${p.archetype}
 - Año de campaña: ${p.anio || 'contemporáneo'}
-- Nacionalidad del PNJ: ${p.nacionalidad || 'no especificada'}
+- Nacionalidad del PNJ: ${p.nacionalidad === '__aleatoria__' ? 'elige libremente según arquetipo, año y localización' : (p.nacionalidad || 'no especificada')}
 - Residencia / Localización aventura: ${p.residencia || 'no especificada'}
 - Minoría étnico-cultural: ${p.minoria === 'si' ? 'Sí, define cuál de forma coherente' : 'No'}
 - Sexo: ${p.sexo === 'aleatorio' ? 'elige libremente según el arquetipo' : p.sexo}
@@ -49,7 +49,7 @@ ${promptAptitudes(p.amenaza, p.perfilCalculado)}
 
 ${promptEquilibrio(p.amenaza, p.ponderacion)}
 
-${promptHabilidades(p.amenaza, p.perfilCalculado, null, 0)}
+${promptHabilidades(p.amenaza, p.perfilCalculado, p.ponderacion, 0)}
 
 Nota: el pool de habilidades puede aumentar según el balance ventajas/desventajas que determines. Ajusta pool_gastado en consecuencia.
 
