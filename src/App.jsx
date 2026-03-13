@@ -190,15 +190,14 @@ Reglas narrativas: nombre realista según nacionalidad y época. NUNCA uses nomb
           max_tokens: 300,
           messages: [{
             role: 'user',
-            content: `Generate a short image prompt in English (max 60 words) for a portrait photo of this character for a dark horror RPG (KULT). Realistic, cinematic, atmospheric. Character: ${pnj.nombre}, ${pnj.edad} years old, ${pnj.sexo}. Appearance: ${pnj.apariencia}. Personality: ${pnj.personalidad}. Threat level: ${params?.amenaza}. Reply ONLY with the image prompt, nothing else.`
+            content: `Write an image generation prompt in English (max 60 words) describing a portrait of this character for a dark horror RPG. Be descriptive: physical appearance, expression, lighting, atmosphere. Return ONLY the plain text prompt. No URLs, no explanations, no quotes, nothing else. Character: ${pnj.nombre}, ${pnj.edad} years old, ${pnj.sexo}. Appearance: ${pnj.apariencia}. Personality: ${pnj.personalidad}.`
           }]
         })
       })
       const data = await res.json()
       const promptText = data.content?.[0]?.text?.trim()
       if (promptText) {
-        const url = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(promptText + ', portrait, realistic, dark, cinematic lighting, film noir') + '?width=512&height=768&nologo=true'
-        setRetrato(url)
+        setRetrato(promptText)
       }
     } catch(e) {
       console.error(e)
