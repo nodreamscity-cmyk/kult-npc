@@ -351,3 +351,98 @@
   color: var(--gold);
   background: rgba(184, 148, 42, 0.08);
 }
+
+/* ── Edad info ── */
+.edadInfo {
+  font-size: 0.72rem;
+  color: var(--gold);
+  opacity: 0.75;
+  margin-top: 0.4rem;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* ── Habilidades imprescindibles ── */
+.imprescindiblesNota {
+  font-size: 0.7rem;
+  color: var(--dim);
+  font-style: italic;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.imprescindiblesLabel {
+  font-size: 0.7rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  margin: 0.8rem 0 0.4rem;
+}
+
+.imprescindiblesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.impBtn {
+  background: transparent;
+  border: 1px solid rgba(184,148,42,0.2);
+  color: var(--ash);
+  font-size: 0.68rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.impBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.impActive {
+  background: rgba(184,148,42,0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.impSeccion {
+  font-size: 0.68rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  margin: 0.8rem 0 0.4rem;
+  font-family: 'Cinzel', serif;
+}
+
+.pilotarGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pilotarInput {
+  font-size: 0.78rem;
+  padding: 0.3rem 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(184,148,42,0.2);
+  color: var(--ash);
+  font-family: 'Cormorant Garamond', serif;
+  border-radius: 2px;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.pilotarInput:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.pilotarInput::placeholder {
+  color: var(--dim);
+  opacity: 0.5;
+}

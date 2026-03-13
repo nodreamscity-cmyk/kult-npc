@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { GRUPOS, SUBGRUPOS, SUBSUBGRUPOS } from '../data.js'
 import { PERFILES, calcularPerfil } from '../aptitudes.js'
+import { HABILIDADES_BASICAS, ARTES_MARCIALES } from '../habilidades.js'
 import styles from './InputPanel.module.css'
 
 const PERFIL_KEYS = ['combativo', 'cerebral', 'carismatico', 'equilibrado', 'aleatorio']
@@ -26,6 +27,15 @@ export default function InputPanel({ onGenerar, loading }) {
   const [edad, setEdad] = useState('')
   const [modoInspiracion, setModoInspiracion] = useState(false)
   const [inspiracion, setInspiracion] = useState('')
+  const [imprescindibles, setImprescindibles] = useState([])
+  const [pilotarVehiculos, setPilotarVehiculos] = useState(['', '', '', '', ''])
+  const [arteMarcialForzada, setArteMarcialForzada] = useState('')
+
+  const toggleImprescindible = (id) => {
+    setImprescindibles(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : prev.length < 5 ? [...prev, id] : prev
+    )
+  }
 
   // Ponderación de perfiles — suma debe ser 100
   const [ponderacion, setPonderacion] = useState({
@@ -92,7 +102,10 @@ export default function InputPanel({ onGenerar, loading }) {
       sexo, orientacion,
       edad: edad ? parseInt(edad) : null,
       inspiracion: modoInspiracion ? inspiracion.trim() : null,
-      ponderacion, perfilCalculado
+      ponderacion, perfilCalculado,
+      imprescindibles,
+      pilotarVehiculos: pilotarVehiculos.filter(v => v.trim()),
+      arteMarcialForzada: arteMarcialForzada || null
     })
   }
 
@@ -212,6 +225,16 @@ export default function InputPanel({ onGenerar, loading }) {
             placeholder="Dejar vacío para edad automática"
             min={15} max={90}
           />
+          {edad && parseInt(edad) >= 40 && parseInt(edad) < 50 && (
+            <div className={styles.edadInfo}>
+              ⬡ 40–49 años: AGI, FUE, CON y PER pierden 2 puntos por año sobre 40. EGO, CAR y EDU ganan 1 punto.
+            </div>
+          )}
+          {edad && parseInt(edad) >= 50 && (
+            <div className={styles.edadInfo}>
+              ⬡ 50+ años: AGI, FUE, CON y PER pierden 2 puntos por año sobre 40. Sin bonos compensatorios.
+            </div>
+          )}
           {edad && (parseInt(edad) > 45) && (amenaza === 'alto' || amenaza === 'muy alto') && (
             <div className={styles.edadAviso}>⚠ Nivel {amenaza} limita la edad a 45 años</div>
           )}
@@ -266,6 +289,58 @@ export default function InputPanel({ onGenerar, loading }) {
                 ⬡ Edad estimada: {perfilCalculado.edadMin}–{perfilCalculado.edadMax} años
               </div>
             </div>
+          )}
+        </Field>
+
+        {/* HABILIDADES IMPRESCINDIBLES */}
+        <Field label="Habilidades imprescindibles">
+          <div className={styles.imprescindiblesNota}>
+            Estarán presentes si el nivel lo permite. Sin selección, la IA decide libremente.
+          </div>
+
+          <div className={styles.impSeccion}>Básicas</div>
+          <div className={styles.imprescindiblesGrid}>
+            {HABILIDADES_BASICAS.map(h => (
+              <button
+                key={h.id}
+                className={`${styles.impBtn} ${imprescindibles.includes(h.id) ? styles.impActive : ''}`}
+                onClick={() => toggleImprescindible(h.id)}
+                title={h.aptitud}
+              >
+                {h.label}
+              </button>
+            ))}
+          </div>
+
+          <div className={styles.impSeccion}>Pilotar</div>
+          <div className={styles.pilotarGrid}>
+            {pilotarVehiculos.map((v, i) => (
+              <input
+                key={i}
+                type="text"
+                value={v}
+                onChange={e => {
+                  const nuevo = [...pilotarVehiculos]
+                  nuevo[i] = e.target.value
+                  setPilotarVehiculos(nuevo)
+                }}
+                placeholder={['Coche', 'Moto', 'Avión', 'Barco', 'Helicóptero'][i]}
+                className={styles.pilotarInput}
+              />
+            ))}
+          </div>
+
+          <div className={styles.impSeccion}>Arte marcial</div>
+          <div className={styles.selWrap}>
+            <select value={arteMarcialForzada} onChange={e => setArteMarcialForzada(e.target.value)}>
+              <option value="">— Sin preferencia —</option>
+              {ARTES_MARCIALES.map(am => (
+                <option key={am.id} value={am.id}>{am.label}</option>
+              ))}
+            </select>
+          </div>
+          {arteMarcialForzada && amenaza === 'bajo' && (
+            <div className={styles.edadAviso}>⚠ Nivel bajo no permite artes marciales</div>
           )}
         </Field>
 
