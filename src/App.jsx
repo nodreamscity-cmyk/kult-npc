@@ -13,11 +13,14 @@ export default function App() {
   const [printMode, setPrintMode] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [retrato, setRetrato] = useState(null)
+  const [loadingRetrato, setLoadingRetrato] = useState(false)
 
   async function onGenerar(p) {
     setParams(p)
     setLoading(true)
     setPnj(null)
+    setRetrato(null)
     setError(null)
 
     const conSecreto = CON_SECRETO.includes(p.amenaza)
@@ -110,7 +113,7 @@ Responde SOLO con un objeto JSON válido, sin markdown ni texto adicional:
 
 equipo_en_escena: entre 4 y 6 objetos concretos que lleva encima cuando aparece por primera vez. Solo nombres de objeto, sin descripciones ni narrativa. Coherentes con su nivel económico, perfil y contexto.
 
-Reglas narrativas: nombre realista según nacionalidad y época. Textos de 1-2 frases precisas. Adapta todo al año, localización y contexto cultural. El nivel de amenaza fuerza el relato y el relato fuerza la distribución de aptitudes.`
+Reglas narrativas: nombre realista según nacionalidad y época. NUNCA uses nombres anglosajones genéricos como Marcus, James, John, Michael, David, Robert, Thomas salvo que la nacionalidad lo justifique explícitamente. Varía enormemente: usa nombres locales, poco comunes, con raíces culturales concretas. Textos de 1-2 frases precisas. Adapta todo al año, localización y contexto cultural. El nivel de amenaza fuerza el relato y el relato fuerza la distribución de aptitudes.`
 
     try {
       const res = await fetch('/api/generate', {
@@ -172,7 +175,35 @@ Reglas narrativas: nombre realista según nacionalidad y época. Textos de 1-2 f
   }
 
   if (printMode && pnj) {
-    return <PrintView pnj={pnj} onCerrar={() => setPrintMode(false)} />
+    return <PrintView pnj={pnj} onCerrar={() => setPrintMode(false)} retrato={retrato} />
+  }
+
+  async function onGenerarRetrato() {
+    if (!pnj) return
+    setLoadingRetrato(true)
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 300,
+          messages: [{
+            role: 'user',
+            content: `Generate a short image prompt in English (max 60 words) for a portrait photo of this character for a dark horror RPG (KULT). Realistic, cinematic, atmospheric. Character: ${pnj.nombre}, ${pnj.edad} years old, ${pnj.sexo}. Appearance: ${pnj.apariencia}. Personality: ${pnj.personalidad}. Threat level: ${params?.amenaza}. Reply ONLY with the image prompt, nothing else.`
+          }]
+        })
+      })
+      const data = await res.json()
+      const promptText = data.content?.[0]?.text?.trim()
+      if (promptText) {
+        const url = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(promptText + ', portrait, realistic, dark, cinematic lighting, film noir') + '?width=512&height=768&nologo=true'
+        setRetrato(url)
+      }
+    } catch(e) {
+      console.error(e)
+    }
+    setLoadingRetrato(false)
   }
 
   return (
@@ -185,7 +216,7 @@ Reglas narrativas: nombre realista según nacionalidad y época. Textos de 1-2 f
 
       <main className={styles.main}>
         <InputPanel onGenerar={onGenerar} loading={loading} />
-        <OutputPanel pnj={pnj} loading={loading} error={error} params={params} onImprimir={() => setPrintMode(true)} />
+        <OutputPanel pnj={pnj} loading={loading} error={error} params={params} onImprimir={() => setPrintMode(true)} retrato={retrato} loadingRetrato={loadingRetrato} onGenerarRetrato={onGenerarRetrato} />
       </main>
     </div>
   )
