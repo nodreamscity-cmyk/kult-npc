@@ -710,3 +710,38 @@
   background: rgba(184,148,42,0.08);
   border-color: var(--gold);
 }
+
+/* ── Retrato ── */
+.retratoArea {
+  margin: 1rem 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.retratoBtn {
+  padding: 0.5rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(184,148,42,0.3);
+  color: #b8942a;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+.retratoBtn:hover { background: rgba(184,148,42,0.08); }
+.retratoBtn:disabled { opacity: 0.5; cursor: wait; }
+.retratoWrap {
+  border: 1px solid rgba(184,148,42,0.2);
+  padding: 0.5rem;
+  background: rgba(0,0,0,0.3);
+  align-self: flex-start;
+}
+.retratoImg {
+  width: 180px;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+}

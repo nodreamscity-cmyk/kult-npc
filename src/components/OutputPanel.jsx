@@ -9,7 +9,7 @@ const THREAT = {
   'único':    { cls: styles.threatUnico,   label: 'Único',    secreto: true  }
 }
 
-export default function OutputPanel({ pnj, loading, error, params, onImprimir }) {
+export default function OutputPanel({ pnj, loading, error, params, onImprimir, retrato, loadingRetrato, onGenerarRetrato }) {
   const threat = params ? THREAT[params.amenaza] : null
   const aptFinal = pnj?.aptitudes_finales || pnj?.aptitudes
 
@@ -299,6 +299,18 @@ export default function OutputPanel({ pnj, loading, error, params, onImprimir })
             )}
 
           </div>
+        </div>
+      )}
+      {pnj && (
+        <div className={styles.retratoArea}>
+          <button className={styles.retratoBtn} onClick={onGenerarRetrato} disabled={loadingRetrato}>
+            {loadingRetrato ? '⬡ Invocando retrato…' : '⬡ Generar retrato'}
+          </button>
+          {retrato && (
+            <div className={styles.retratoWrap}>
+              <img src={retrato} alt="Retrato" className={styles.retratoImg} />
+            </div>
+          )}
         </div>
       )}
       {pnj && (
