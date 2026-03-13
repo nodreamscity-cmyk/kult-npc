@@ -9,7 +9,7 @@ const THREAT = {
   'único':    { cls: styles.threatUnico,   label: 'Único',    secreto: true  }
 }
 
-export default function OutputPanel({ pnj, loading, error, params }) {
+export default function OutputPanel({ pnj, loading, error, params, onImprimir }) {
   const threat = params ? THREAT[params.amenaza] : null
   const aptFinal = pnj?.aptitudes_finales || pnj?.aptitudes
 
