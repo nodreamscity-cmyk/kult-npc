@@ -117,9 +117,9 @@ export default function OutputPanel({ pnj, loading, error, params, onImprimir })
                 <div className={styles.secItemWide}>
                   <div className={styles.secLabel}>Capacidad de daño</div>
                   <div className={styles.secValDano}>
-                    <span>{pnj.secundarias.capDano.rasgunos} Rasguños = 1 Leve</span>
-                    <span>{pnj.secundarias.capDano.leves} Leves = 1 Grave</span>
-                    <span>{pnj.secundarias.capDano.graves} Graves = 1 Mortal</span>
+                    <span>{pnj.secundarias.capDano?.rasgunos ?? '?'} Rasguños = 1 Leve</span>
+                    <span>{pnj.secundarias.capDano?.leves ?? '?'} Leves = 1 Grave</span>
+                    <span>{pnj.secundarias.capDano?.graves ?? '?'} Graves = 1 Mortal</span>
                   </div>
                 </div>
               </div>
