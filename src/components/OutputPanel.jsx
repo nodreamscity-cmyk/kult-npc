@@ -304,11 +304,15 @@ export default function OutputPanel({ pnj, loading, error, params, onImprimir, r
       {pnj && (
         <div className={styles.retratoArea}>
           <button className={styles.retratoBtn} onClick={onGenerarRetrato} disabled={loadingRetrato}>
-            {loadingRetrato ? '⬡ Invocando retrato…' : '⬡ Generar retrato'}
+            {loadingRetrato ? '⬡ Generando prompt…' : '⬡ Prompt de retrato'}
           </button>
           {retrato && (
-            <div className={styles.retratoWrap}>
-              <img src={retrato} alt="Retrato" className={styles.retratoImg} />
+            <div className={styles.promptBox}>
+              <p className={styles.promptHint}>Usa este prompt en el generador de imágenes que prefieras.</p>
+              <div className={styles.promptText}>{retrato}</div>
+              <div className={styles.promptBtns}>
+                <button className={styles.promptCopy} onClick={() => navigator.clipboard.writeText(retrato)}>⬡ Copiar prompt</button>
+              </div>
             </div>
           )}
         </div>
