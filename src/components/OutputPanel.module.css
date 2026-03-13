@@ -113,6 +113,8 @@
 /* Card */
 .card {
   animation: fadeIn 0.5s ease;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 @keyframes fadeIn {
@@ -466,6 +468,8 @@
 .equilibrioBlock {
   padding: 1rem 1.3rem 0.8rem;
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .vdGrid {
@@ -582,6 +586,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
+  width: 100%;
+  overflow: hidden;
 }
 
 .habItem {
@@ -591,11 +597,16 @@
   align-items: baseline;
   padding: 0.2rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.04);
+  min-width: 0;
 }
 
 .habLabel {
   font-size: 0.82rem;
   color: var(--ash);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .habApt {
