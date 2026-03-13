@@ -1,6 +1,12 @@
+import { useEffect } from 'react'
 import styles from './PrintView.module.css'
 
 export default function PrintView({ pnj, onCerrar }) {
+  // Scroll al top al entrar, sin disparar print automático
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const apt = pnj.aptitudes_finales || pnj.aptitudes || {}
   const sec = pnj.secundarias || {}
   const habPrincipal = (pnj.habilidades || []).filter(h => h.bloque === 'principal')
