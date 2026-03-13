@@ -130,22 +130,85 @@ export const HABILIDADES_ACADEMICAS = [
 
 // ── Artes marciales ──
 export const ARTES_MARCIALES = [
+
+  // ════ PROYECCIÓN Y CONTROL ════
   {
     id: 'jiu_jitsu',
     label: 'Jiu-jitsu',
+    categoria: 'proyeccion',
     descripcion: 'Defensivo. Técnicas contra ataques con o sin armas. Devuelve la fuerza del adversario en su contra.',
     habilidades: [
       { id: 'lanzamiento', label: 'Lanzamiento', aptitud: 'FUE', niveles: { 20: 9,  30: 15, 50: 20, 75: 30 } },
-      { id: 'presa',       label: 'Presa',        aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 15, 75: 24 } },
-      { id: 'bloqueo',     label: 'Bloqueo',      aptitud: 'AGI', niveles: { 20: 9,  30: 15, 50: 18, 75: 24 } },
-      { id: 'esquivar',    label: 'Esquivar',     aptitud: 'AGI', niveles: { 20: null,30: 6, 50: 12, 75: 21 } },
-      { id: 'caer',        label: 'Caer',         aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 20, 75: 24 } },
+      { id: 'presa',       label: 'Presa',       aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 15, 75: 24 } },
+      { id: 'bloqueo',     label: 'Bloqueo',     aptitud: 'AGI', niveles: { 20: 9,  30: 15, 50: 18, 75: 24 } },
+      { id: 'esquivar',    label: 'Esquivar',    aptitud: 'AGI', niveles: { 20: null,30: 6, 50: 12, 75: 21 } },
+      { id: 'caer',        label: 'Caer',        aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 20, 75: 24 } },
     ],
     maniobras: ['Amortiguar el golpe', 'Combinar', 'Desarmar', 'Estrangulamiento', 'Evasión', 'Kiai', 'Zafarse'],
   },
   {
+    id: 'judo',
+    label: 'Judo',
+    categoria: 'proyeccion',
+    descripcion: 'Proyección y control. Derriba al adversario usando su propio impulso. Énfasis en lanzamientos y caídas.',
+    habilidades: [
+      { id: 'lanzamiento', label: 'Lanzamiento', aptitud: 'FUE', niveles: { 20: 12, 30: 18, 50: 22, 75: 30 } },
+      { id: 'presa',       label: 'Presa',       aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'caer',        label: 'Caer',        aptitud: 'AGI', niveles: { 20: 12, 30: 15, 50: 20, 75: 27 } },
+      { id: 'bloqueo',     label: 'Bloqueo',     aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+      { id: 'esquivar',    label: 'Esquivar',    aptitud: 'AGI', niveles: { 20: null,30: 6, 50: 12, 75: 18 } },
+    ],
+    maniobras: ['Amortiguar el golpe', 'Combinar', 'Desarmar', 'Estrangulamiento', 'Evasión', 'Kiai', 'Zafarse'],
+  },
+  {
+    id: 'aikido',
+    label: 'Aikido',
+    categoria: 'proyeccion',
+    descripcion: 'Puramente defensivo. Redirige la energía del atacante en su contra. No ataca, neutraliza.',
+    habilidades: [
+      { id: 'bloqueo',     label: 'Bloqueo',     aptitud: 'AGI', niveles: { 20: 12, 30: 18, 50: 22, 75: 30 } },
+      { id: 'esquivar',    label: 'Esquivar',    aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'presa',       label: 'Presa',       aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 15, 75: 21 } },
+      { id: 'lanzamiento', label: 'Lanzamiento', aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 27 } },
+      { id: 'caer',        label: 'Caer',        aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+    ],
+    maniobras: ['Amortiguar el golpe', 'Combinar', 'Desarmar', 'Evasión', 'Kiai', 'Zafarse'],
+  },
+  {
+    id: 'lucha_grecorromana',
+    label: 'Lucha grecorromana',
+    categoria: 'proyeccion',
+    descripcion: 'Occidental. Agarre y derribo puro. Sin golpes. Dominio del cuerpo a cuerpo en el suelo.',
+    habilidades: [
+      { id: 'presa',       label: 'Presa',       aptitud: 'FUE', niveles: { 20: 12, 30: 18, 50: 22, 75: 30 } },
+      { id: 'lanzamiento', label: 'Lanzamiento', aptitud: 'FUE', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'caer',        label: 'Caer',        aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'bloqueo',     label: 'Bloqueo',     aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 12, 75: 18 } },
+      { id: 'esquivar',    label: 'Esquivar',    aptitud: 'AGI', niveles: { 20: null,30: 6, 50: 9,  75: 15 } },
+    ],
+    maniobras: ['Amortiguar el golpe', 'Combinar', 'Desarmar', 'Estrangulamiento', 'Evasión', 'Zafarse'],
+  },
+  {
+    id: 'wrestling',
+    label: 'Wrestling',
+    categoria: 'proyeccion',
+    descripcion: 'Espectáculo y brutalidad. Proyecciones, llaves y golpes teatrales. La Bravuconada puede robar la iniciativa al adversario.',
+    habilidades: [
+      { id: 'presa',        label: 'Presa',        aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'lanzamiento',  label: 'Lanzamiento',  aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 15, 75: 21 } },
+      { id: 'golpe',        label: 'Golpe',        aptitud: 'FUE', niveles: { 20: 6,  30: 9,  50: 12, 75: 18 } },
+      { id: 'caer',         label: 'Caer',         aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 12, 75: 18 } },
+      { id: 'bravuconada',  label: 'Bravuconada',  aptitud: 'CAR', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+    ],
+    maniobras: ['Amortiguar el golpe', 'Combinar', 'Estrangulamiento', 'Evasión', 'Gancho', 'Kiai', 'Noquear', 'Zafarse'],
+    notaEspecial: 'Bravuconada (CAR): éxito roba la iniciativa al adversario independientemente de su tirada.',
+  },
+
+  // ════ GOLPE Y PATADA ════
+  {
     id: 'karate',
     label: 'Kárate',
+    categoria: 'golpe',
     descripcion: 'Ofensivo. Énfasis en golpes y patadas. Se emplean bastones y nunchaku.',
     habilidades: [
       { id: 'golpe',    label: 'Golpe',    aptitud: 'FUE', niveles: { 20: 9,  30: 15, 50: 20, 75: 30 } },
@@ -157,8 +220,67 @@ export const ARTES_MARCIALES = [
     maniobras: ['Ataque relámpago', 'Combinar', 'Desarmar', 'Evasión', 'Kiai', 'Noquear', 'Patada giratoria', 'Patada voladora', 'Salto del tigre', 'Zafarse', 'Zarpa de tigre'],
   },
   {
+    id: 'taekwondo',
+    label: 'Taekwondo',
+    categoria: 'golpe',
+    descripcion: 'Coreano. Énfasis extremo en patadas. Muy espectacular y veloz. Las patadas son el arma principal.',
+    habilidades: [
+      { id: 'patada',    label: 'Patada',    aptitud: 'FUE', niveles: { 20: 12, 30: 18, 50: 22, 75: 30 } },
+      { id: 'golpe',     label: 'Golpe',     aptitud: 'FUE', niveles: { 20: 6,  30: 9,  50: 12, 75: 18 } },
+      { id: 'bloqueo',   label: 'Bloqueo',   aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'esquivar',  label: 'Esquivar',  aptitud: 'AGI', niveles: { 20: 9,  30: 15, 50: 18, 75: 24 } },
+      { id: 'acrobacia', label: 'Acrobacia', aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+    ],
+    maniobras: ['Ataque relámpago', 'Combinar', 'Evasión', 'Kiai', 'Patada giratoria', 'Patada voladora', 'Salto del tigre', 'Zafarse'],
+  },
+  {
+    id: 'muay_thai',
+    label: 'Muay Thai',
+    categoria: 'golpe',
+    descripcion: 'Tailandés. El arte de las ocho extremidades — puños, codos, rodillas y pies. Devastador en corta distancia.',
+    habilidades: [
+      { id: 'golpe',     label: 'Golpe',     aptitud: 'FUE', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'patada',    label: 'Patada',    aptitud: 'FUE', niveles: { 20: 9,  30: 15, 50: 18, 75: 24 } },
+      { id: 'codazo',    label: 'Codazo',    aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 27 } },
+      { id: 'rodillazo', label: 'Rodillazo', aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'bloqueo',   label: 'Bloqueo',   aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+    ],
+    maniobras: ['Ataque relámpago', 'Combinar', 'Evasión', 'Gancho', 'Kiai', 'Noquear', 'Zafarse', 'Zarpa de tigre'],
+  },
+  {
+    id: 'boxeo',
+    label: 'Boxeo',
+    categoria: 'golpe',
+    descripcion: 'Occidental. Solo puños, pero con precisión y potencia extraordinarias. El bloqueo y la esquiva son tan importantes como el golpe.',
+    habilidades: [
+      { id: 'golpe',    label: 'Golpe',    aptitud: 'FUE', niveles: { 20: 12, 30: 18, 50: 22, 75: 30 } },
+      { id: 'bloqueo',  label: 'Bloqueo',  aptitud: 'AGI', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'esquivar', label: 'Esquivar', aptitud: 'AGI', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'finta',    label: 'Finta',    aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+    ],
+    maniobras: ['Ataque relámpago', 'Combinar', 'Evasión', 'Gancho', 'Kiai', 'Noquear', 'Zafarse'],
+  },
+  {
+    id: 'wushu',
+    label: 'Wushu',
+    categoria: 'golpe',
+    descripcion: 'Chino. Kung fu contemporáneo. Golpes y patadas con componente acrobático. Armas tradicionales chinas.',
+    habilidades: [
+      { id: 'golpe',     label: 'Golpe',     aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 27 } },
+      { id: 'patada',    label: 'Patada',    aptitud: 'FUE', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'bloqueo',   label: 'Bloqueo',   aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'esquivar',  label: 'Esquivar',  aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'acrobacia', label: 'Acrobacia', aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+      { id: 'arma',      label: 'Arma',      aptitud: 'AGI', niveles: { 20: null,30: 6, 50: 15, 75: 21 } },
+    ],
+    maniobras: ['Ataque relámpago', 'Combinar', 'Desarmar', 'Evasión', 'Kiai', 'Patada giratoria', 'Patada voladora', 'Salto del tigre', 'Zafarse', 'Zarpa de tigre'],
+  },
+
+  // ════ ARMA DE FILO ════
+  {
     id: 'kendo',
     label: 'Kendo',
+    categoria: 'filo',
     descripcion: 'Esgrima japonesa. Manejo de la espada a una y dos manos.',
     habilidades: [
       { id: 'tajo',     label: 'Tajo',     aptitud: 'FUE', niveles: { 20: 12, 30: 15, 50: 20, 75: 30 } },
@@ -169,24 +291,126 @@ export const ARTES_MARCIALES = [
     maniobras: ['Ataque torbellino', 'Combinar', 'Desarmar', 'Evasión', 'Iaido', 'Kiai', 'Romper el arma', 'Salto del tigre', 'Tajo giratorio', 'Zafarse'],
   },
   {
+    id: 'esgrima',
+    label: 'Esgrima occidental',
+    categoria: 'filo',
+    descripcion: 'Europea. Estocadas y tajos con espada, sable o florete. La finta y el engaño son tan importantes como el golpe.',
+    habilidades: [
+      { id: 'estocada', label: 'Estocada', aptitud: 'FUE', niveles: { 20: 12, 30: 18, 50: 22, 75: 30 } },
+      { id: 'tajo',     label: 'Tajo',     aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'bloqueo',  label: 'Bloqueo',  aptitud: 'AGI', niveles: { 20: 12, 30: 18, 50: 22, 75: 30 } },
+      { id: 'esquivar', label: 'Esquivar', aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'finta',    label: 'Finta',    aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+    ],
+    maniobras: ['Ataque torbellino', 'Combinar', 'Desarmar', 'Evasión', 'Kiai', 'Romper el arma', 'Salto del tigre', 'Tajo giratorio', 'Zafarse'],
+  },
+  {
+    id: 'nguni',
+    label: 'Nguni',
+    categoria: 'filo',
+    descripcion: 'Zulú. Combate tradicional con bastón largo y escudo. Énfasis en bloqueo y contraataque. También incluye cuchillo corto.',
+    habilidades: [
+      { id: 'bloqueo',  label: 'Bloqueo',  aptitud: 'AGI', niveles: { 20: 12, 30: 18, 50: 22, 75: 30 } },
+      { id: 'tajo',     label: 'Tajo',     aptitud: 'FUE', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'golpe',    label: 'Golpe',    aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'esquivar', label: 'Esquivar', aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'arma',     label: 'Arma',     aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+    ],
+    maniobras: ['Ataque torbellino', 'Combinar', 'Desarmar', 'Evasión', 'Kiai', 'Romper el arma', 'Zafarse'],
+  },
+  {
+    id: 'eskrima',
+    label: 'Eskrima/Arnis',
+    categoria: 'filo',
+    descripcion: 'Filipino. Combate con bastones y cuchillos en ambas manos simultáneamente. Extremadamente versátil y fluido.',
+    habilidades: [
+      { id: 'arma',          label: 'Arma',          aptitud: 'AGI', niveles: { 20: 12, 30: 18, 50: 22, 75: 30 } },
+      { id: 'golpe',         label: 'Golpe',         aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'bloqueo',       label: 'Bloqueo',       aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'esquivar',      label: 'Esquivar',      aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+      { id: 'desarmar',      label: 'Desarmar',      aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+    ],
+    maniobras: ['Ataque torbellino', 'Combinar', 'Desarmar', 'Evasión', 'Kiai', 'Romper el arma', 'Tajo giratorio', 'Zafarse'],
+  },
+
+  // ════ SISTEMAS MIXTOS ════
+  {
     id: 'instruccion_comandos',
     label: 'Instrucción de comandos',
+    categoria: 'mixto',
     descripcion: 'Versátil. Patadas, golpes, lanzamientos, presas. También puñales y cuchillos.',
     habilidades: [
-      { id: 'golpe',        label: 'Golpe',        aptitud: 'FUE', niveles: { 20: 6,    30: 9,  50: 15, 75: 21 } },
-      { id: 'patada',       label: 'Patada',       aptitud: 'FUE', niveles: { 20: 6,    30: 9,  50: 15, 75: 18 } },
-      { id: 'lanzamiento',  label: 'Lanzamiento',  aptitud: 'FUE', niveles: { 20: 6,    30: 9,  50: 9,  75: 12 } },
-      { id: 'presa',        label: 'Presa',        aptitud: 'FUE', niveles: { 20: 6,    30: 9,  50: 9,  75: 12 } },
-      { id: 'bloqueo',      label: 'Bloqueo',      aptitud: 'AGI', niveles: { 20: 6,    30: 9,  50: 15, 75: 21 } },
-      { id: 'caer',         label: 'Caer',         aptitud: 'AGI', niveles: { 20: 6,    30: 9,  50: 12, 75: 15 } },
-      { id: 'arma',         label: 'Arma',         aptitud: 'AGI', niveles: { 20: null, 30: 6,  50: 15, 75: 21 } },
+      { id: 'golpe',       label: 'Golpe',       aptitud: 'FUE', niveles: { 20: 6,    30: 9,  50: 15, 75: 21 } },
+      { id: 'patada',      label: 'Patada',      aptitud: 'FUE', niveles: { 20: 6,    30: 9,  50: 15, 75: 18 } },
+      { id: 'lanzamiento', label: 'Lanzamiento', aptitud: 'FUE', niveles: { 20: 6,    30: 9,  50: 9,  75: 12 } },
+      { id: 'presa',       label: 'Presa',       aptitud: 'FUE', niveles: { 20: 6,    30: 9,  50: 9,  75: 12 } },
+      { id: 'bloqueo',     label: 'Bloqueo',     aptitud: 'AGI', niveles: { 20: 6,    30: 9,  50: 15, 75: 21 } },
+      { id: 'caer',        label: 'Caer',        aptitud: 'AGI', niveles: { 20: 6,    30: 9,  50: 12, 75: 15 } },
+      { id: 'arma',        label: 'Arma',        aptitud: 'AGI', niveles: { 20: null, 30: 6,  50: 15, 75: 21 } },
     ],
     maniobras: ['Amortiguar el golpe', 'Ataque relámpago', 'Combinar', 'Desarmar', 'Estrangulamiento', 'Evasión', 'Gancho', 'Kiai', 'Noquear', 'Patada giratoria', 'Patada voladora', 'Salto del tigre', 'Zafarse', 'Zarpa de tigre'],
   },
+  {
+    id: 'krav_maga',
+    label: 'Krav Maga',
+    categoria: 'mixto',
+    descripcion: 'Israelí. Máxima eficiencia, neutralización rápida. Diseñado para situaciones reales, no deportivas.',
+    habilidades: [
+      { id: 'golpe',   label: 'Golpe',   aptitud: 'FUE', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'patada',  label: 'Patada',  aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'presa',   label: 'Presa',   aptitud: 'FUE', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+      { id: 'bloqueo', label: 'Bloqueo', aptitud: 'AGI', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'esquivar',label: 'Esquivar',aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+      { id: 'arma',    label: 'Arma',    aptitud: 'AGI', niveles: { 20: null,30: 6, 50: 15, 75: 21 } },
+    ],
+    maniobras: ['Amortiguar el golpe', 'Ataque relámpago', 'Combinar', 'Desarmar', 'Estrangulamiento', 'Evasión', 'Gancho', 'Kiai', 'Noquear', 'Patada giratoria', 'Patada voladora', 'Zafarse', 'Zarpa de tigre'],
+  },
+  {
+    id: 'systema',
+    label: 'Systema',
+    categoria: 'mixto',
+    descripcion: 'Ruso. Fluido y adaptable. Integra respiración, psicología y movimiento natural. Sin formas fijas.',
+    habilidades: [
+      { id: 'golpe',   label: 'Golpe',   aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'presa',   label: 'Presa',   aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 15, 75: 21 } },
+      { id: 'bloqueo', label: 'Bloqueo', aptitud: 'AGI', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'esquivar',label: 'Esquivar',aptitud: 'AGI', niveles: { 20: 9,  30: 15, 50: 20, 75: 27 } },
+      { id: 'caer',    label: 'Caer',    aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'arma',    label: 'Arma',    aptitud: 'AGI', niveles: { 20: null,30: 6, 50: 15, 75: 21 } },
+    ],
+    maniobras: ['Amortiguar el golpe', 'Ataque relámpago', 'Combinar', 'Desarmar', 'Estrangulamiento', 'Evasión', 'Kiai', 'Noquear', 'Zafarse'],
+  },
+  {
+    id: 'hapkido',
+    label: 'Hapkido',
+    categoria: 'mixto',
+    descripcion: 'Coreano. Mezcla proyecciones, llaves articulares y golpes. Versátil y técnico.',
+    habilidades: [
+      { id: 'patada',      label: 'Patada',      aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'presa',       label: 'Presa',       aptitud: 'FUE', niveles: { 20: 9,  30: 12, 50: 15, 75: 21 } },
+      { id: 'lanzamiento', label: 'Lanzamiento', aptitud: 'FUE', niveles: { 20: 6,  30: 9,  50: 12, 75: 18 } },
+      { id: 'golpe',       label: 'Golpe',       aptitud: 'FUE', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+      { id: 'bloqueo',     label: 'Bloqueo',     aptitud: 'AGI', niveles: { 20: 9,  30: 12, 50: 18, 75: 24 } },
+      { id: 'esquivar',    label: 'Esquivar',    aptitud: 'AGI', niveles: { 20: 6,  30: 9,  50: 15, 75: 21 } },
+    ],
+    maniobras: ['Amortiguar el golpe', 'Ataque relámpago', 'Combinar', 'Desarmar', 'Estrangulamiento', 'Evasión', 'Kiai', 'Patada giratoria', 'Patada voladora', 'Zafarse'],
+  },
+  {
+    id: 'combate_callejero',
+    label: 'Combate callejero',
+    categoria: 'mixto',
+    descripcion: 'Sin estilo, sin reglas. Instinto puro y experiencia acumulada a golpes. Armas improvisadas y defensa ante múltiples rivales.',
+    habilidades: [
+      { id: 'golpe',             label: 'Golpe',             aptitud: 'FUE', niveles: { 20: 7,    30: 10, 50: 16, 75: 22 } },
+      { id: 'patada',            label: 'Patada',            aptitud: 'FUE', niveles: { 20: 7,    30: 10, 50: 14, 75: 20 } },
+      { id: 'presa',             label: 'Presa',             aptitud: 'FUE', niveles: { 20: 6,    30: 9,  50: 12, 75: 18 } },
+      { id: 'arma_improvisada',  label: 'Arma improvisada',  aptitud: 'AGI', niveles: { 20: 7,    30: 10, 50: 16, 75: 22 } },
+      { id: 'defensa_multiple',  label: 'Defensa múltiple',  aptitud: 'AGI', niveles: { 20: null, 30: 7,  50: 12, 75: 18 } },
+    ],
+    maniobras: ['Amortiguar el golpe', 'Ataque relámpago', 'Combinar', 'Estrangulamiento', 'Evasión', 'Gancho', 'Kiai', 'Noquear', 'Zafarse'],
+    notaEspecial: 'Arma improvisada (AGI): cualquier objeto a mano usado como arma. Defensa múltiple (AGI): si es atacado por varios rivales simultáneos, tira tantas defensas como atacantes y elige la mejor, hasta 3 veces por combate.',
+  },
 ]
-
-// Artes marciales adicionales generadas por IA — la IA puede inventar nuevas
-// siguiendo la misma estructura: nombre, descripción, habilidades con aptitud y niveles, maniobras budo compatibles
 
 // ── Habilidades preternaturales (maestros y grandes maestros) ──
 export const HABILIDADES_PRETERNATURALES = [
