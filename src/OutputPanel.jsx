@@ -310,7 +310,7 @@ export default function OutputPanel({ pnj, loading, error, params }) {
       )}
       {pnj && (
         <button className={styles.printBtn} onClick={onImprimir}>
-          ⬡ Imprimir ficha
+          ⬡ Ver ficha imprimible
         </button>
       )}
     </div>
