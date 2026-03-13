@@ -215,9 +215,28 @@
 @media print {
   .controls { display: none; }
   .wrap { background: white; padding: 0; }
-  .page { margin: 0; box-shadow: none; page-break-after: always; width: 210mm; min-height: 297mm; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+    width: 210mm;
+    min-height: 297mm;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .page1 { background-image: url('/fondo_p1.jpg') !important; }
+  .page2 { background-image: url('/fondo_p2.jpg') !important; }
 }
 
-@media (max-width: 220mm) {
-  .page { width: 100%; }
+/* Móvil */
+@media (max-width: 800px) {
+  .page {
+    width: 100%;
+    min-height: auto;
+    margin: 0.5rem auto;
+  }
+  .page1 .colDer {
+    margin-left: 0;
+    padding: 10mm 4mm;
+  }
 }
