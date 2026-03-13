@@ -25,6 +25,7 @@ export default function InputPanel({ onGenerar, loading }) {
   const [sexo, setSexo] = useState('aleatorio')
   const [orientacion, setOrientacion] = useState('aleatoria')
   const [edad, setEdad] = useState('')
+  const [nombreForzado, setNombreForzado] = useState('')
   const [modoInspiracion, setModoInspiracion] = useState(false)
   const [inspiracion, setInspiracion] = useState('')
   const [imprescindibles, setImprescindibles] = useState([])
@@ -101,6 +102,7 @@ export default function InputPanel({ onGenerar, loading }) {
       anio, nacionalidad, residencia, minoria, amenaza,
       sexo, orientacion,
       edad: edad ? parseInt(edad) : null,
+      nombreForzado: nombreForzado.trim() || null,
       inspiracion: modoInspiracion ? inspiracion.trim() : null,
       ponderacion, perfilCalculado,
       imprescindibles,
@@ -215,6 +217,15 @@ export default function InputPanel({ onGenerar, loading }) {
               </button>
             ))}
           </div>
+        </Field>
+
+        <Field label="Nombre (opcional)">
+          <input
+            type="text"
+            value={nombreForzado}
+            onChange={e => setNombreForzado(e.target.value)}
+            placeholder="Dejar vacío para nombre aleatorio"
+          />
         </Field>
 
         <Field label="Edad (opcional)">
