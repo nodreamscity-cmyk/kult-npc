@@ -688,3 +688,25 @@
   color: var(--dim);
   margin-right: 0.4rem;
 }
+
+/* ── Botón imprimir ── */
+.printBtn {
+  display: block;
+  width: calc(100% - 2.6rem);
+  margin: 1rem 1.3rem 1.5rem;
+  padding: 0.7rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(184,148,42,0.35);
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.printBtn:hover {
+  background: rgba(184,148,42,0.08);
+  border-color: var(--gold);
+}
