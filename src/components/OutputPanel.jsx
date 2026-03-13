@@ -114,14 +114,16 @@ export default function OutputPanel({ pnj, loading, error, params, onImprimir })
                   <div className={styles.secLabel}>Bono daño</div>
                   <div className={styles.secVal}>{pnj.secundarias.bonoDano >= 0 ? `+${pnj.secundarias.bonoDano}` : pnj.secundarias.bonoDano}</div>
                 </div>
-                <div className={styles.secItemWide}>
-                  <div className={styles.secLabel}>Capacidad de daño</div>
-                  <div className={styles.secValDano}>
-                    <span>{pnj.secundarias.capDano?.rasgunos ?? '?'} Rasguños = 1 Leve</span>
-                    <span>{pnj.secundarias.capDano?.leves ?? '?'} Leves = 1 Grave</span>
-                    <span>{pnj.secundarias.capDano?.graves ?? '?'} Graves = 1 Mortal</span>
+                {pnj.secundarias.capDano && typeof pnj.secundarias.capDano === 'object' && (
+                  <div className={styles.secItemWide}>
+                    <div className={styles.secLabel}>Capacidad de daño</div>
+                    <div className={styles.secValDano}>
+                      <span>{pnj.secundarias.capDano.rasgunos} Rasguños = 1 Leve</span>
+                      <span>{pnj.secundarias.capDano.leves} Leves = 1 Grave</span>
+                      <span>{pnj.secundarias.capDano.graves} Graves = 1 Mortal</span>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           )}
