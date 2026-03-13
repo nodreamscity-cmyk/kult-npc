@@ -60,21 +60,26 @@
 
 /* Página 1 — columna izq para polaroid, columna der para datos */
 .page1 .colDer {
-  margin-left: 48mm;
+  margin-left: 183px;
   flex: 1;
-  padding: 14mm 7mm 10mm 5mm;
+  width: calc(100% - 183px);
+  box-sizing: border-box;
+  padding: 53px 27px 38px 19px;
   display: flex;
   flex-direction: column;
-  gap: 3mm;
+  gap: 11px;
 }
+
 
 /* Página 2 — flujo natural */
 .page2 .colFull {
   flex: 1;
-  padding: 10mm 8mm;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 38px 30px;
   display: flex;
   flex-direction: column;
-  gap: 4mm;
+  gap: 15px;
 }
 
 /* Bloques */
