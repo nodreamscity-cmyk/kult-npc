@@ -101,8 +101,11 @@ Responde SOLO con un objeto JSON válido, sin markdown ni texto adicional:
     "preternaturales": [{"label": "", "coste": 0}]
   },
   "pool_total": 0,
-  "pool_gastado": 0
+  "pool_gastado": 0,
+  "equipo_en_escena": ["", "", "", ""]
 }
+
+equipo_en_escena: entre 4 y 6 objetos concretos que lleva encima cuando aparece por primera vez. Solo nombres de objeto, sin descripciones ni narrativa. Coherentes con su nivel económico, perfil y contexto.
 
 Reglas narrativas: nombre realista según nacionalidad y época. Textos de 1-2 frases precisas. Adapta todo al año, localización y contexto cultural. El nivel de amenaza fuerza el relato y el relato fuerza la distribución de aptitudes.`
 
