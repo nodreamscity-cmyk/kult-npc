@@ -1,6 +1,5 @@
 import styles from './OutputPanel.module.css'
 import { APTITUDES } from '../aptitudes.js'
-import { imprimirFicha } from '../PrintView.js'
 
 const THREAT = {
   bajo:       { cls: styles.threatBajo,    label: 'Bajo',     secreto: false },
@@ -310,8 +309,8 @@ export default function OutputPanel({ pnj, loading, error, params }) {
         </div>
       )}
       {pnj && (
-        <button className={styles.printBtn} onClick={() => imprimirFicha(pnj)}>
-          ⬡ Imprimir ficha
+        <button className={styles.printBtn} onClick={onImprimir}>
+          ⬡ Ver ficha imprimible
         </button>
       )}
     </div>
