@@ -1,11 +1,38 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './PrintView.module.css'
 
 export default function PrintView({ pnj, onCerrar }) {
-  // Scroll al top al entrar, sin disparar print automático
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+  const page1Ref = useRef(null)
+  const page2Ref = useRef(null)
+  const [generating, setGenerating] = useState(false)
+
+  useEffect(() => { window.scrollTo(0, 0) }, [])
+
+  const handlePDF = async () => {
+    setGenerating(true)
+    try {
+      const html2canvas = (await import('html2canvas')).default
+      const { jsPDF } = await import('jspdf')
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+      const capture = async (el) => {
+        return await html2canvas(el, {
+          scale: 2, useCORS: true, allowTaint: true,
+          backgroundColor: '#1a1510',
+          width: el.offsetWidth, height: el.offsetHeight,
+        })
+      }
+      const c1 = await capture(page1Ref.current)
+      pdf.addImage(c1.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 210, 297)
+      pdf.addPage()
+      const c2 = await capture(page2Ref.current)
+      pdf.addImage(c2.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 210, 297)
+      pdf.save(`${pnj.nombre || 'personaje'}.pdf`)
+    } catch (e) {
+      console.error(e)
+      alert('Error generando PDF')
+    }
+    setGenerating(false)
+  }
 
   const apt = pnj.aptitudes_finales || pnj.aptitudes || {}
   const sec = pnj.secundarias || {}
@@ -26,15 +53,16 @@ export default function PrintView({ pnj, onCerrar }) {
     <div className={styles.wrap}>
 
       <div className={styles.controls}>
-        <button className={styles.printBtn} onClick={() => window.print()}>⬡ Imprimir / Guardar PDF</button>
+        <button className={styles.printBtn} onClick={handlePDF} disabled={generating}>
+          {generating ? '⬡ Generando PDF…' : '⬡ Descargar PDF'}
+        </button>
         <button className={styles.closeBtn} onClick={onCerrar}>✕ Volver</button>
       </div>
 
-      {/* PÁGINA 1 — polaroid izq, datos der */}
-      <div className={`${styles.page} ${styles.page1}`}>
+      {/* PÁGINA 1 */}
+      <div ref={page1Ref} className={`${styles.page} ${styles.page1}`}>
         <div className={styles.colDer}>
 
-          {/* Identidad */}
           <div className={styles.blk}>
             <div className={styles.nombre}>{pnj.nombre}</div>
             <div className={styles.metaRow}>
@@ -53,7 +81,6 @@ export default function PrintView({ pnj, onCerrar }) {
             </div>
           </div>
 
-          {/* Aptitudes */}
           <div className={styles.blk}>
             <div className={styles.sectionTitle}>Aptitudes</div>
             <div className={styles.aptGrid}>
@@ -85,7 +112,6 @@ export default function PrintView({ pnj, onCerrar }) {
             </div>
           </div>
 
-          {/* Perfil narrativo */}
           <div className={styles.blk}>
             <div className={styles.sectionTitle}>Perfil</div>
             <div className={styles.narrGrid}>
@@ -112,7 +138,6 @@ export default function PrintView({ pnj, onCerrar }) {
             </div>
           </div>
 
-          {/* Economía */}
           <div className={styles.blk}>
             <div className={styles.sectionTitle}>Situación económica</div>
             <div className={styles.ecoGrid}>
@@ -125,7 +150,6 @@ export default function PrintView({ pnj, onCerrar }) {
             </div>
           </div>
 
-          {/* Equipo */}
           {pnj.equipo_en_escena?.length > 0 && (
             <div className={styles.blk}>
               <div className={styles.sectionTitle}>Equipo en escena</div>
@@ -140,14 +164,12 @@ export default function PrintView({ pnj, onCerrar }) {
         </div>
       </div>
 
-      {/* PÁGINA 2 — flujo natural */}
-      <div className={`${styles.page} ${styles.page2}`}>
+      {/* PÁGINA 2 */}
+      <div ref={page2Ref} className={`${styles.page} ${styles.page2}`}>
         <div className={styles.colFull}>
 
-          {/* Habilidades */}
           <div className={styles.blk}>
             <div className={styles.sectionTitle}>Habilidades · Pool: {pnj.pool_gastado || '?'} / {pnj.pool_total || '?'} pts</div>
-
             {habPrincipal.length > 0 && (
               <div className={styles.bloque}>
                 <div className={styles.bloqueTitle}>Especialización</div>
@@ -181,13 +203,12 @@ export default function PrintView({ pnj, onCerrar }) {
                 </div>
                 <div className={`${styles.habGrid} ${styles.twoCol}`}>
                   {(am.habilidades||[]).map((h,i) => <HabRow key={i} h={h}/>)}
-                  {(am.maniobras||[]).filter(m=>m.valor).map((h,i) => <HabRow key={`m${i}`} h={h}/>)}
+                  {(am.maniobras||[]).filter(m => m && typeof m === 'object' && m.valor).map((h,i) => <HabRow key={`m${i}`} h={h}/>)}
                 </div>
               </div>
             )}
           </div>
 
-          {/* Ventajas y desventajas */}
           <div className={styles.blk}>
             <div className={styles.sectionTitle}>Ventajas &amp; Desventajas</div>
             <div className={styles.vdGrid}>
@@ -218,7 +239,6 @@ export default function PrintView({ pnj, onCerrar }) {
             </div>
           </div>
 
-          {/* Secretos */}
           {pnj.secreto_inconfesable && (
             <div className={`${styles.blk} ${styles.secretoBlk}`}>
               <div className={styles.sectionTitle} style={{color:'#5a1010'}}>Secretos</div>
