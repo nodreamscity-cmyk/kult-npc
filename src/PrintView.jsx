@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import html2canvas from 'html2canvas'
+import { jsPDF } from 'jspdf'
 import styles from './PrintView.module.css'
 
 export default function PrintView({ pnj, onCerrar }) {
@@ -11,8 +13,6 @@ export default function PrintView({ pnj, onCerrar }) {
   const handlePDF = async () => {
     setGenerating(true)
     try {
-      const html2canvas = (await import('html2canvas')).default
-      const { jsPDF } = await import('jspdf')
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
       const A4_W = 794  // 210mm at 96dpi
       const A4_H = 1123 // 297mm at 96dpi
