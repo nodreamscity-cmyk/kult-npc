@@ -3,7 +3,7 @@ import InputPanel from './components/InputPanel.jsx'
 import OutputPanel from './components/OutputPanel.jsx'
 import { aplicarEnvejecimiento, promptAptitudes, CON_SECRETO, calcularSecundarias } from './aptitudes.js'
 import { calcularEquilibrio, promptEquilibrio } from './equilibrio.js'
-import { promptHabilidades } from './habilidades.js'
+import { promptHabilidades, HABILIDADES_BASICAS, ARTES_MARCIALES } from './habilidades.js'
 import styles from './App.module.css'
 
 export default function App() {
@@ -44,6 +44,17 @@ Genera un PNJ con estos parámetros:
 - Nivel de amenaza y experiencia: ${p.amenaza}
 ${p.edad ? `- Edad fijada por el usuario: ${p.edad} años. Respeta esta edad salvo que contradiga una restricción de nivel (alto/muy alto: máximo 45 años).` : ''}
 ${p.inspiracion ? `- Inspiración de personaje: "${p.inspiracion}". IMPORTANTE: solo usa esta referencia si corresponde a una figura pública, histórica o de ficción reconocida internacionalmente. Si no la reconoces, ignórala completamente y genera el personaje según arquetipo y nivel. Si la reconoces, úsala como ancla de personalidad, perfil y distribución de aptitudes — no copies datos biográficos reales, inspírate en el arquetipo que representa.` : ''}
+${(() => {
+        const basicas = p.imprescindibles?.length > 0
+          ? p.imprescindibles.map(id => { const h = HABILIDADES_BASICAS.find(x => x.id === id); return h ? h.label : id })
+          : []
+        const pilotar = (p.pilotarVehiculos || []).map(v => `Pilotar ${v}`)
+        const todas = [...basicas, ...pilotar]
+        return todas.length > 0
+          ? `- Habilidades imprescindibles (incluye estas si el nivel lo permite): ${todas.join(', ')}.`
+          : ''
+      })()}
+${p.arteMarcialForzada ? `- Arte marcial preferida por el usuario: ${ARTES_MARCIALES.find(x => x.id === p.arteMarcialForzada)?.label || p.arteMarcialForzada}. Úsala si el nivel de amenaza lo permite. Si no es posible, ignórala sin avisar.` : ''}
 
 ${promptAptitudes(p.amenaza, p.perfilCalculado)}
 
