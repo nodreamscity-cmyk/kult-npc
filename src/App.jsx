@@ -44,6 +44,7 @@ Genera un PNJ con estos parámetros:
 - Sexo: ${p.sexo === 'aleatorio' ? 'elige libremente según el arquetipo' : p.sexo}
 - Orientación sexual: ${p.orientacion === 'aleatoria' ? 'elige libremente según el arquetipo' : p.orientacion}
 - Nivel de amenaza y experiencia: ${p.amenaza}
+${p.nombreForzado ? `- Nombre fijado por el usuario: ${p.nombreForzado}. Usa exactamente este nombre.` : ''}
 ${p.edad ? `- Edad fijada por el usuario: ${p.edad} años. Respeta esta edad salvo que contradiga una restricción de nivel (alto/muy alto: máximo 45 años).` : ''}
 ${p.inspiracion ? `- Inspiración de personaje: "${p.inspiracion}". IMPORTANTE: solo usa esta referencia si corresponde a una figura pública, histórica o de ficción reconocida internacionalmente. Si no la reconoces, ignórala completamente y genera el personaje según arquetipo y nivel. Si la reconoces, úsala como ancla de personalidad, perfil y distribución de aptitudes — no copies datos biográficos reales, inspírate en el arquetipo que representa.` : ''}
 ${(() => {
