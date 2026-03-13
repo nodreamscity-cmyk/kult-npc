@@ -183,7 +183,7 @@ Reglas narrativas: nombre realista según nacionalidad y época. Textos de 1-2 f
 
       <main className={styles.main}>
         <InputPanel onGenerar={onGenerar} loading={loading} />
-        <OutputPanel pnj={pnj} loading={loading} error={error} params={params} />
+        <OutputPanel pnj={pnj} loading={loading} error={error} params={params} onImprimir={() => setPrintMode(true)} />
       </main>
     </div>
   )
