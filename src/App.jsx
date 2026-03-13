@@ -4,11 +4,13 @@ import OutputPanel from './components/OutputPanel.jsx'
 import { aplicarEnvejecimiento, promptAptitudes, CON_SECRETO, calcularSecundarias } from './aptitudes.js'
 import { calcularEquilibrio, promptEquilibrio } from './equilibrio.js'
 import { promptHabilidades, HABILIDADES_BASICAS, ARTES_MARCIALES } from './habilidades.js'
+import PrintView from './PrintView.jsx'
 import styles from './App.module.css'
 
 export default function App() {
   const [params, setParams] = useState(null)
   const [pnj, setPnj] = useState(null)
+  const [printMode, setPrintMode] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
@@ -164,6 +166,10 @@ Reglas narrativas: nombre realista según nacionalidad y época. Textos de 1-2 f
       setError(e.message)
     }
     setLoading(false)
+  }
+
+  if (printMode && pnj) {
+    return <PrintView pnj={pnj} onCerrar={() => setPrintMode(false)} />
   }
 
   return (
