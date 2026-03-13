@@ -134,6 +134,8 @@ Reglas narrativas: nombre realista según nacionalidad y época. Textos de 1-2 f
         parsed.aptitudes_finales = aptitudes
         parsed.nota_envejecimiento = nota
         parsed.secundarias = calcularSecundarias(aptitudes)
+      } else if (parsed.aptitudes) {
+        parsed.secundarias = calcularSecundarias(parsed.aptitudes)
       }
 
       // Calcular equilibrio mental en cliente (verificación)
