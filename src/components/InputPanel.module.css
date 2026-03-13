@@ -1,0 +1,448 @@
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  position: sticky;
+  top: 1.5rem;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .panel {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+.panelHead {
+  padding: 0.85rem 1.3rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.panelHead h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22rem;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background: var(--blood);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.body {
+  padding: 1.3rem;
+}
+
+.field {
+  margin-bottom: 1.05rem;
+}
+
+.field label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.14rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 0.32rem;
+}
+
+.field input,
+.selWrap select {
+  width: 100%;
+  background: var(--mid);
+  border: 1px solid var(--border);
+  color: var(--ash);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.52rem 0.75rem;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field input:focus,
+.selWrap select:focus {
+  border-color: var(--gold);
+}
+
+.field input::placeholder {
+  color: var(--border-light);
+  font-style: italic;
+}
+
+.selWrap {
+  position: relative;
+}
+
+.selWrap::after {
+  content: '▾';
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  pointer-events: none;
+  font-size: 0.72rem;
+}
+
+/* Toggle */
+.toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+}
+
+.toggleBtn {
+  padding: 0.5rem;
+  background: var(--mid);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.toggleBtn:hover { border-color: var(--border-light); color: var(--ash); }
+.toggleBtn.active { background: var(--deep-red); border-color: var(--blood); color: var(--pale); }
+
+/* Radio group */
+.radioGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.radioBtn {
+  flex: 1 1 auto;
+  min-width: 3.5rem;
+  padding: 0.42rem 0.4rem;
+  background: var(--mid);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem;
+  text-align: center;
+  line-height: 1.2;
+  transition: all 0.2s;
+}
+
+.radioBtn:hover { border-color: var(--border-light); color: var(--ash); }
+.radioBtn.active { background: var(--deep-red); border-color: var(--blood); color: var(--pale); }
+
+/* Generate button */
+.genBtn {
+  width: 100%;
+  padding: 0.9rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--pale-gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.28rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.genBtn:hover {
+  background: rgba(180,140,40,0.07);
+  box-shadow: 0 0 24px rgba(180,140,40,0.12);
+}
+
+.genBtn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.amenazaNota {
+  font-size: 0.65rem;
+  color: var(--blood);
+  font-style: italic;
+  margin-top: 0.4rem;
+  letter-spacing: 0.02rem;
+  opacity: 0.8;
+}
+
+.amenazaPuntos {
+  font-size: 0.65rem;
+  color: var(--gold);
+  font-style: italic;
+  margin-top: 0.2rem;
+  letter-spacing: 0.02rem;
+  opacity: 0.75;
+}
+
+/* ── Perfil ponderado ── */
+.perfilWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.2rem;
+}
+
+.perfilRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.perfilLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.perfilPct {
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 600;
+  min-width: 2.5rem;
+  text-align: right;
+}
+
+.sliderWrap {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--c, var(--gold));
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--c, var(--gold));
+  border: 2px solid var(--gold);
+  cursor: pointer;
+}
+
+.perfilEdad {
+  font-size: 0.65rem;
+  color: var(--gold);
+  font-style: italic;
+  margin-top: 0.3rem;
+  letter-spacing: 0.03rem;
+  opacity: 0.85;
+}
+
+/* ── Edad ── */
+.edadAviso {
+  font-size: 0.72rem;
+  color: var(--blood);
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* ── Toggle modo perfil/inspiración ── */
+.modoToggle {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.modoBtn {
+  flex: 1;
+  padding: 0.4rem 0.5rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modoBtn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(184, 148, 42, 0.08);
+}
+
+/* ── Inspiración ── */
+.inspiracionWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.inspiracionNota {
+  font-size: 0.7rem;
+  color: var(--dim);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ── Nacionalidad aleatoria ── */
+.nacionalidadWrap {
+  display: flex;
+  gap: 0.4rem;
+  align-items: stretch;
+}
+
+.nacionalidadWrap input {
+  flex: 1;
+}
+
+.randomBtn {
+  padding: 0 0.7rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.06rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.randomBtn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(184, 148, 42, 0.08);
+}
+
+/* ── Edad info ── */
+.edadInfo {
+  font-size: 0.72rem;
+  color: var(--gold);
+  opacity: 0.75;
+  margin-top: 0.4rem;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* ── Habilidades imprescindibles ── */
+.imprescindiblesNota {
+  font-size: 0.7rem;
+  color: var(--dim);
+  font-style: italic;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.imprescindiblesLabel {
+  font-size: 0.7rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  margin: 0.8rem 0 0.4rem;
+}
+
+.imprescindiblesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.impBtn {
+  background: transparent;
+  border: 1px solid rgba(184,148,42,0.2);
+  color: var(--ash);
+  font-size: 0.68rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.impBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.impActive {
+  background: rgba(184,148,42,0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.impSeccion {
+  font-size: 0.68rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  margin: 0.8rem 0 0.4rem;
+  font-family: 'Cinzel', serif;
+}
+
+.pilotarGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pilotarInput {
+  font-size: 0.78rem;
+  padding: 0.3rem 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(184,148,42,0.2);
+  color: var(--ash);
+  font-family: 'Cormorant Garamond', serif;
+  border-radius: 2px;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.pilotarInput:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.pilotarInput::placeholder {
+  color: var(--dim);
+  opacity: 0.5;
+}
