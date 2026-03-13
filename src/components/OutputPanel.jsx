@@ -295,6 +295,16 @@ export default function OutputPanel({ pnj, loading, error, params }) {
               </Section>
             )}
 
+            {pnj.equipo_en_escena?.length > 0 && (
+              <Section title="Equipo en escena" full>
+                <div className={styles.equipoGrid}>
+                  {pnj.equipo_en_escena.map((obj, i) => (
+                    <span key={i} className={styles.equipoItem}>{obj}</span>
+                  ))}
+                </div>
+              </Section>
+            )}
+
           </div>
         </div>
       )}

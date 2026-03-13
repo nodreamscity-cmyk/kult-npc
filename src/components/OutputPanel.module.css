@@ -669,3 +669,22 @@
   color: var(--ash);
   border-bottom: 1px solid rgba(255,255,255,0.04);
 }
+
+/* ── Equipo en escena ── */
+.equipoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+}
+
+.equipoItem {
+  font-size: 0.82rem;
+  color: var(--ash);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.equipoItem::before {
+  content: '—';
+  color: var(--dim);
+  margin-right: 0.4rem;
+}
