@@ -14,12 +14,22 @@ export default function PrintView({ pnj, onCerrar }) {
       const html2canvas = (await import('html2canvas')).default
       const { jsPDF } = await import('jspdf')
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+      const A4_W = 794  // 210mm at 96dpi
+      const A4_H = 1123 // 297mm at 96dpi
       const capture = async (el) => {
-        return await html2canvas(el, {
+        const prevW = el.style.width
+        const prevH = el.style.minHeight
+        el.style.width = A4_W + 'px'
+        el.style.minHeight = A4_H + 'px'
+        const canvas = await html2canvas(el, {
           scale: 2, useCORS: true, allowTaint: true,
           backgroundColor: '#1a1510',
-          width: el.offsetWidth, height: el.offsetHeight,
+          width: A4_W, height: A4_H,
+          windowWidth: A4_W,
         })
+        el.style.width = prevW
+        el.style.minHeight = prevH
+        return canvas
       }
       const c1 = await capture(page1Ref.current)
       pdf.addImage(c1.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 210, 297)
@@ -36,9 +46,9 @@ export default function PrintView({ pnj, onCerrar }) {
 
   const apt = pnj.aptitudes_finales || pnj.aptitudes || {}
   const sec = pnj.secundarias || {}
-  const habPrincipal = (pnj.habilidades || []).filter(h => h.bloque === 'principal')
-  const habAncla     = (pnj.habilidades || []).filter(h => h.bloque === 'ancla')
-  const habBasica    = (pnj.habilidades || []).filter(h => h.bloque === 'basica')
+  const habPrincipal = (pnj.habilidades || []).filter(h => h.bloque === 'principal' && h.label)
+  const habAncla     = (pnj.habilidades || []).filter(h => h.bloque === 'ancla' && h.label)
+  const habBasica    = (pnj.habilidades || []).filter(h => h.bloque === 'basica' && h.label)
   const am = pnj.arte_marcial
 
   const HabRow = ({ h }) => (
