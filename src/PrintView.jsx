@@ -3,7 +3,7 @@ import html2canvas from 'html2canvas'
 import { jsPDF } from 'jspdf'
 import styles from './PrintView.module.css'
 
-export default function PrintView({ pnj, onCerrar }) {
+export default function PrintView({ pnj, onCerrar, retrato }) {
   const page1Ref = useRef(null)
   const page2Ref = useRef(null)
   const [generating, setGenerating] = useState(false)
@@ -33,6 +33,18 @@ export default function PrintView({ pnj, onCerrar }) {
       }
       const c1 = await capture(page1Ref.current)
       pdf.addImage(c1.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 210, 297)
+      // Insertar retrato en el hueco del polaroid si existe
+      if (retrato) {
+        try {
+          const img = new Image()
+          img.crossOrigin = 'anonymous'
+          await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = retrato })
+          const c = document.createElement('canvas')
+          c.width = img.naturalWidth; c.height = img.naturalHeight
+          c.getContext('2d').drawImage(img, 0, 0)
+          pdf.addImage(c.toDataURL('image/jpeg', 0.9), 'JPEG', 4, 18, 38, 57)
+        } catch(e) { console.warn('Retrato no disponible', e) }
+      }
       pdf.addPage()
       const c2 = await capture(page2Ref.current)
       pdf.addImage(c2.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 210, 297)
